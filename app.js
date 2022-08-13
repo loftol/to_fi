@@ -1,2 +1,1 @@
-class A {}
-A = 0;
+console.log("fuck");
