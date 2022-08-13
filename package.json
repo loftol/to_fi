@@ -26,6 +26,7 @@
     "chokidar": "^3.5.3",
     "concat-map": "^0.0.1",
     "debug": "^3.2.7",
+    "eslint-config-prettier": "^8.5.0",
     "fill-range": "^7.0.1",
     "glob-parent": "^5.1.2",
     "has-flag": "^3.0.0",
