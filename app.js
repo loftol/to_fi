@@ -1,1 +1,2 @@
-console.log('hello');
+class A {}
+A = 0;
