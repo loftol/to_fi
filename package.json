@@ -31,6 +31,7 @@
     "pg": "^8.7.3",
     "picomatch": "^2.3.1",
     "pstree.remy": "^1.1.8",
+    "react-native-cli": "^2.0.1",
     "readdirp": "^3.6.0",
     "semver": "^5.7.1",
     "simple-update-notifier": "^1.0.7",
