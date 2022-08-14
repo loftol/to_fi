@@ -8,6 +8,8 @@ toilet finder <br>
 ```
 npm i yarn
 yarn install
+yarn add react-native -g
+yarn add react-native-cli -g
 ```
 
 ## extensions
