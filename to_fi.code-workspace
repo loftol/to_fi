@@ -1,0 +1,17 @@
+{
+  "folders": [
+	{
+		"path": "."
+	}
+],
+  "settings": {
+    "javascript.validate.enable": false,
+    "editor.formatOnSave": false,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+    },
+    "eslint.workingDirectories": [{"mode": "auto"}],
+    "eslint.alwaysShowStatus": true,
+    "files.autoSave": "onFocusChange"
+  }
+}
