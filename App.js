@@ -2,7 +2,7 @@ import React from 'react';
 import type {Node} from 'react';
 import {SafeAreaView, StyleSheet} from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
-import {MapBoard, Menu, ToiletInfo} from './src/components/mainComponents.tsx';
+import {MapBoard, Menu, ToiletInfo} from './src/components/mainComponents';
 
 const styles = StyleSheet.create({
   backgroundStyle: {
