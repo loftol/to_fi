@@ -1,21 +1,27 @@
-import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {View} from 'react-native';
 import UserMenu from './userMenu';
 
-const styles = StyleSheet.create({
-  menuContainer: {
-    position: 'absolute',
+export default function MenuContainer() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    setIsOpen(true);
+  }, []);
+
+  const position: 'absolute' | 'relative' | undefined = 'absolute';
+
+  const menuContainer = {
+    position,
     top: 0,
-    left: 0,
+    left: isOpen ? 0 : -200,
     width: 200,
     height: '100%',
     backgroundColor: '#fff',
-  },
-});
+  };
 
-export default function MenuContainer() {
   return (
-    <View style={styles.menuContainer}>
+    <View style={menuContainer}>
       <UserMenu />
     </View>
   );
