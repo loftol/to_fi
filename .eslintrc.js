@@ -19,8 +19,9 @@ module.exports = {
   },
   plugins: ['react', '@typescript-eslint'],
   rules: {
+    'import/extensions': ['off'],
     'prettier/prettier': ['error', {endOfLine: 'auto'}],
-    'react/jsx-filename-extension': [1, {extensions: ['.js', '.jsx']}],
+    'react/jsx-filename-extension': [1, {extensions: ['.js', '.jsx', '.tsx']}],
     'no-use-before-define': [
       'off',
       {functions: true, classes: true, variables: false},
@@ -30,5 +31,10 @@ module.exports = {
       {namedcomponents: 'arrow-function'},
     ],
     'react/prop-types': 'off',
+  },
+  settings: {
+    'import/resolver': {
+      typescript: {},
+    },
   },
 };
