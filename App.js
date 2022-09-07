@@ -1,22 +1,42 @@
 import React from 'react';
 import type {Node} from 'react';
-import {SafeAreaView, StyleSheet} from 'react-native';
-import {Colors} from 'react-native/Libraries/NewAppScreen';
-import {MapBoard, Menu, ToiletInfo} from './src/components/mainComponents.tsx';
+import {SafeAreaView, StyleSheet, View} from 'react-native';
+import {
+  MapBoard,
+  MenuContainer,
+  ToiletInfo,
+} from './src/components/mainComponents.tsx';
 
 const styles = StyleSheet.create({
   backgroundStyle: {
-    backgroundColor: Colors.dark,
+    backgroundColor: '#000',
     height: '100%',
-    fles: 1,
+    width: '100%',
+  },
+  flexWrapper: {
+    position: 'absolute',
+    flexDirection: 'column',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+    backgroundColor: '#0F0',
   },
 });
 
+function FlexWrapper() {
+  return (
+    <View style={[styles.flexWrapper]}>
+      <MapBoard />
+      <ToiletInfo />
+    </View>
+  );
+}
+
 const App: () => Node = () => (
   <SafeAreaView style={[styles.backgroundStyle]}>
-    <Menu style={[styles.menu]} />
-    <MapBoard style={[styles.mapBoard]} />
-    <ToiletInfo style={[styles.toiletInfo]} />
+    <FlexWrapper />
+    <MenuContainer />
   </SafeAreaView>
 );
 
