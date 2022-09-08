@@ -19,6 +19,9 @@ module.exports = {
   },
   plugins: ['react', '@typescript-eslint'],
   rules: {
+    'no-empty-pattern': ['off'],
+    'func-names': ['off'],
+    'default-param-last': ['off'],
     'import/extensions': ['off'],
     'prettier/prettier': ['error', {endOfLine: 'auto'}],
     'react/jsx-filename-extension': [1, {extensions: ['.js', '.jsx', '.tsx']}],

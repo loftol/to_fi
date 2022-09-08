@@ -1,20 +1,39 @@
-import React, {useState, useEffect} from 'react';
-import {View} from 'react-native';
+import React from 'react';
+import {Button, View, StyleSheet} from 'react-native';
+import {useDispatch, useSelector} from 'react-redux';
+import {RootState} from '../../common/store';
+import {close, open} from '../../common/state';
 import UserMenu from './userMenu';
 
-export default function MenuContainer() {
-  const [isOpen, setIsOpen] = useState(false);
+const styles = StyleSheet.create({
+  buttonStyle: {
+    position: 'absolute',
+    right: -100,
+    top: 20,
+  },
+});
 
-  useEffect(() => {
-    setIsOpen(true);
-  }, []);
+export default function MenuContainer() {
+  const isMenuOpen = useSelector(
+    (state: RootState) => state.isMenuOpen.isMenuOpen,
+  );
+
+  const dispatch = useDispatch();
+
+  const openMenu = () => {
+    dispatch(open());
+  };
+  const closeMenu = () => {
+    dispatch(close());
+  };
+  const changeMenuState = () => (isMenuOpen ? closeMenu() : openMenu());
 
   const position: 'absolute' | 'relative' | undefined = 'absolute';
 
   const menuContainer = {
     position,
     top: 0,
-    left: isOpen ? 0 : -200,
+    left: isMenuOpen ? 0 : -200,
     width: 200,
     height: '100%',
     backgroundColor: '#fff',
@@ -23,6 +42,12 @@ export default function MenuContainer() {
   return (
     <View style={menuContainer}>
       <UserMenu />
+      <View style={styles.buttonStyle}>
+        <Button
+          onPress={() => changeMenuState()}
+          title={isMenuOpen ? 'close' : 'open'}
+        />
+      </View>
     </View>
   );
 }

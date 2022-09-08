@@ -4,7 +4,7 @@ import {View, StyleSheet} from 'react-native';
 // 지도 부분 컴포넌트.
 
 const styles = StyleSheet.create({
-  singleBlock: {
+  mapBoard: {
     flex: 1,
     width: '100%',
     backgroundColor: '#050',
@@ -12,5 +12,5 @@ const styles = StyleSheet.create({
 });
 
 export default function MapBoard() {
-  return <View style={[styles.singleBlock]} />;
+  return <View style={[styles.mapBoard]} />;
 }
