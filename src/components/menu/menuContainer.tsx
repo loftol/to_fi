@@ -2,7 +2,7 @@ import React from 'react';
 import {Button, View, StyleSheet} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../../common/store';
-import {close, open} from '../../common/state';
+import {close, open} from '../../common/isMenuOpenReducer';
 import UserMenu from './userMenu';
 
 const styles = StyleSheet.create({

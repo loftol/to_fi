@@ -1,5 +1,5 @@
 import {combineReducers, configureStore} from '@reduxjs/toolkit';
-import {isMenuOpenReducer} from './state';
+import {isMenuOpenReducer} from './isMenuOpenReducer';
 
 const rootReducer = combineReducers({
   isMenuOpen: isMenuOpenReducer,
