@@ -11,6 +11,13 @@ const styles = StyleSheet.create({
     right: -100,
     top: 20,
   },
+  menuContainer: {
+    position: 'absolute',
+    top: 0,
+    width: 200,
+    height: '100%',
+    backgroundColor: '#fff',
+  },
 });
 
 export default function MenuContainer() {
@@ -20,27 +27,11 @@ export default function MenuContainer() {
 
   const dispatch = useDispatch();
 
-  const openMenu = () => {
-    dispatch(open());
-  };
-  const closeMenu = () => {
-    dispatch(close());
-  };
-  const changeMenuState = () => (isMenuOpen ? closeMenu() : openMenu());
-
-  const position: 'absolute' | 'relative' | undefined = 'absolute';
-
-  const menuContainer = {
-    position,
-    top: 0,
-    left: isMenuOpen ? 0 : -200,
-    width: 200,
-    height: '100%',
-    backgroundColor: '#fff',
-  };
+  const changeMenuState = () =>
+    isMenuOpen ? dispatch(close()) : dispatch(open());
 
   return (
-    <View style={menuContainer}>
+    <View style={{...styles.menuContainer, left: isMenuOpen ? 0 : -200}}>
       <UserMenu />
       <View style={styles.buttonStyle}>
         <Button
