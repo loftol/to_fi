@@ -1,5 +1,5 @@
-import React from 'react';
-import {Button, View, StyleSheet} from 'react-native';
+import React, {useRef} from 'react';
+import {Button, View, StyleSheet, Animated} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../../common/store';
 import {close, open} from '../../common/isMenuOpenReducer';
@@ -25,13 +25,38 @@ export default function MenuContainer() {
     (state: RootState) => state.isMenuOpen.isMenuOpen,
   );
 
+  const moveAnim = useRef(new Animated.Value(-200)).current;
+
   const dispatch = useDispatch();
 
-  const changeMenuState = () =>
-    isMenuOpen ? dispatch(close()) : dispatch(open());
+  const moveLeft = () => {
+    Animated.timing(moveAnim, {
+      toValue: -200,
+      duration: 5000,
+      useNativeDriver: true,
+    }).start();
+  };
+  const moveRight = () => {
+    Animated.timing(moveAnim, {
+      toValue: 0,
+      duration: 5000,
+      useNativeDriver: true,
+    }).start();
+  };
+
+  const openMenu = () => {
+    dispatch(open());
+    moveRight();
+  };
+  const closeMenu = () => {
+    dispatch(close());
+    moveLeft();
+  };
+
+  const changeMenuState = () => (isMenuOpen ? closeMenu() : openMenu());
 
   return (
-    <View style={{...styles.menuContainer, left: isMenuOpen ? 0 : -200}}>
+    <Animated.View style={[styles.menuContainer, {x: moveAnim}]}>
       <UserMenu />
       <View style={styles.buttonStyle}>
         <Button
@@ -39,6 +64,6 @@ export default function MenuContainer() {
           title={isMenuOpen ? 'close' : 'open'}
         />
       </View>
-    </View>
+    </Animated.View>
   );
 }
