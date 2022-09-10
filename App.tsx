@@ -3,9 +3,9 @@ import {SafeAreaView, StyleSheet, View} from 'react-native';
 import {Provider} from 'react-redux';
 import store from './src/common/store';
 import {
-  MapBoard,
+  MapBoardContainer,
   MenuContainer,
-  ToiletInfo,
+  ToiletInfoContainer,
 } from './src/components/mainComponents';
 
 const styles = StyleSheet.create({
@@ -28,8 +28,8 @@ const styles = StyleSheet.create({
 function FlexWrapper() {
   return (
     <View style={[styles.flexWrapper]}>
-      <MapBoard />
-      <ToiletInfo />
+      <MapBoardContainer />
+      <ToiletInfoContainer />
     </View>
   );
 }

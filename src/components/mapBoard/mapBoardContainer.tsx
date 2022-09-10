@@ -1,5 +1,6 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
+import MapBoard from './mapBoard';
 
 // 지도 부분 컴포넌트.
 
@@ -11,6 +12,10 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function MapBoard() {
-  return <View style={[styles.mapBoard]} />;
+export default function MapBoardContainer() {
+  return (
+    <View style={[styles.mapBoard]}>
+      <MapBoard />
+    </View>
+  );
 }
