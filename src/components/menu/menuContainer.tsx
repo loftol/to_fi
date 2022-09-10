@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React, {useEffect, useRef} from 'react';
 import {Button, View, StyleSheet, Animated} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../../common/store';
@@ -13,6 +13,7 @@ const styles = StyleSheet.create({
   },
   menuContainer: {
     position: 'absolute',
+    // left: 0,
     top: 0,
     width: 200,
     height: '100%',
@@ -25,21 +26,24 @@ export default function MenuContainer() {
     (state: RootState) => state.isMenuOpen.isMenuOpen,
   );
 
+  useEffect(() => {
+    dispatch(close());
+  }, []);
+
   const moveAnim = useRef(new Animated.Value(-200)).current;
 
   const dispatch = useDispatch();
-
   const moveLeft = () => {
     Animated.timing(moveAnim, {
       toValue: -200,
-      duration: 5000,
+      duration: 300,
       useNativeDriver: true,
     }).start();
   };
   const moveRight = () => {
     Animated.timing(moveAnim, {
       toValue: 0,
-      duration: 5000,
+      duration: 300,
       useNativeDriver: true,
     }).start();
   };
@@ -56,7 +60,11 @@ export default function MenuContainer() {
   const changeMenuState = () => (isMenuOpen ? closeMenu() : openMenu());
 
   return (
-    <Animated.View style={[styles.menuContainer, {x: moveAnim}]}>
+    <Animated.View
+      style={{
+        ...styles.menuContainer,
+        transform: [{translateX: moveAnim}],
+      }}>
       <UserMenu />
       <View style={styles.buttonStyle}>
         <Button
