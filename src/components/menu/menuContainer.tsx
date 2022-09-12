@@ -1,6 +1,7 @@
 import React, {useEffect, useRef} from 'react';
 import {Button, View, StyleSheet, Animated} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
+import commonStyles from '../../common/commonStyles';
 import {RootState} from '../../common/store';
 import {close, open} from '../../common/isMenuOpenReducer';
 import UserMenu from './userMenu';
@@ -65,6 +66,7 @@ export default function MenuContainer() {
     <Animated.View
       style={{
         ...styles.menuContainer,
+        ...commonStyles.border,
         transform: [{translateX: moveAnim}],
       }}>
       <UserMenu />
