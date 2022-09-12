@@ -1,11 +1,5 @@
 import {StyleSheet} from 'react-native';
 
-const commonStyles = StyleSheet.create({
-  border: {
-    borderWidth: 3,
-    borderColor: '#000',
-    borderStyle: 'solid',
-  },
-});
+const commonStyles = StyleSheet.create({});
 
 export default commonStyles;
