@@ -7,6 +7,8 @@ import UserMenu from './userMenu';
 
 const styles = StyleSheet.create({
   buttonStyle: {
+    backgroundColor: 'black',
+    color: 'white',
     position: 'absolute',
     right: -100,
     top: 20,
