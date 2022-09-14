@@ -1,11 +1,12 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, {useRef} from 'react';
+import React, {useEffect, useRef} from 'react';
 import {
   StyleSheet,
   Animated,
   PanResponder,
   Dimensions,
   Text,
+  Alert,
 } from 'react-native';
 import ToiletInfo from './toiletInfo';
 import devStyles from '../../common/devStyles';
@@ -14,21 +15,21 @@ import devStyles from '../../common/devStyles';
 const styles = StyleSheet.create({
   toiletInfoContainer: {
     position: 'absolute',
-    top: '100%',
     width: '100%',
+    top: '90%',
     height: '200%',
-    backgroundColor: 'white',
+    backgroundColor: '#fff',
   },
 });
 
 export default function ToiletInfoContainer() {
   const windowHeight = -Dimensions.get('window').height;
 
-  const openDegree = useRef(0);
+  const openDegree = useRef(1);
   const openDegreeHeight: number[] = [
     0,
-    windowHeight * 0.4,
-    windowHeight * 0.8,
+    windowHeight * 0.3,
+    windowHeight * 0.7,
   ];
   const pan = useRef(new Animated.Value(0)).current;
 
@@ -42,6 +43,12 @@ export default function ToiletInfoContainer() {
       openDegree.current = 2;
     }
   };
+
+  useEffect(() => {
+    Alert.alert(
+      `openDegree = ${openDegree.current}, windowHeight = ${windowHeight}`,
+    );
+  }, []);
 
   const panResponder = useRef(
     PanResponder.create({
