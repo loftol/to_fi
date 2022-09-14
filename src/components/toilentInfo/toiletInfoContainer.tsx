@@ -44,12 +44,6 @@ export default function ToiletInfoContainer() {
     }
   };
 
-  useEffect(() => {
-    Alert.alert(
-      `openDegree = ${openDegree.current}, windowHeight = ${windowHeight}`,
-    );
-  }, []);
-
   const panResponder = useRef(
     PanResponder.create({
       onMoveShouldSetPanResponder: () => true,
