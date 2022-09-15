@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, {useEffect, useRef} from 'react';
+import React, {useRef} from 'react';
 import {
   StyleSheet,
   Animated,
@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
 export default function ToiletInfoContainer() {
   const windowHeight = -Dimensions.get('window').height;
 
-  const openDegree = useRef(1);
+  const openDegree = useRef(0);
   const openDegreeHeight: number[] = [
     0,
     windowHeight * 0.3,
@@ -34,8 +34,7 @@ export default function ToiletInfoContainer() {
   const pan = useRef(new Animated.Value(0)).current;
 
   const changeLevel = (val: number) => {
-    if (windowHeight > val) pan.setValue(windowHeight);
-    else if (val > openDegreeHeight[1]) {
+    if (val > openDegreeHeight[1]) {
       openDegree.current = 0;
     } else if (val < openDegreeHeight[1] && val > openDegreeHeight[2]) {
       openDegree.current = 1;
@@ -51,19 +50,24 @@ export default function ToiletInfoContainer() {
         pan.setValue(openDegreeHeight[openDegree.current]);
       },
       onPanResponderMove: (event, gestureState) => {
-        if (
-          openDegreeHeight[openDegree.current] + gestureState.dy >
-          windowHeight
-        )
-          pan.setValue(openDegreeHeight[openDegree.current] + gestureState.dy);
+        if (openDegree.current === 2 && -windowHeight * 0.4 < gestureState.y0)
+          return;
+
+        const nextPos = openDegreeHeight[openDegree.current] + gestureState.dy;
+        if (nextPos >= 0.75 * windowHeight) pan.setValue(nextPos);
       },
       onPanResponderRelease: (event, gestureState) => {
-        changeLevel(openDegreeHeight[openDegree.current] + gestureState.dy);
-        pan.flattenOffset();
+        if (gestureState.vy < -1) openDegree.current = 2;
+        else if (gestureState.vy > 1) openDegree.current = 0;
+        else {
+          const nextPos =
+            openDegreeHeight[openDegree.current] + gestureState.dy;
+          changeLevel(nextPos);
+        }
+
         Animated.spring(pan, {
           toValue: openDegreeHeight[openDegree.current],
           useNativeDriver: true,
-          velocity: -10,
         }).start();
       },
     }),
