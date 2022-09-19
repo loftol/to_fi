@@ -38,10 +38,10 @@ interface Props {}
 
 const App = ({}: Props) => (
   <Provider store={store}>
-    <SafeAreaView style={[styles.backgroundStyle]}>
+    <View style={[styles.backgroundStyle, {height: '100%'}]}>
       <FlexWrapper />
       <MenuContainer />
-    </SafeAreaView>
+    </View>
   </Provider>
 );
 

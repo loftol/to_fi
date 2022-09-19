@@ -6,7 +6,6 @@ import {
   PanResponder,
   Dimensions,
   Text,
-  Alert,
 } from 'react-native';
 import ToiletInfo from './toiletInfo';
 import devStyles from '../../common/devStyles';
@@ -28,8 +27,8 @@ export default function ToiletInfoContainer() {
   const openDegree = useRef(0);
   const openDegreeHeight: number[] = [
     0,
-    windowHeight * 0.3,
-    windowHeight * 0.7,
+    windowHeight * 0.4,
+    windowHeight * 0.8,
   ];
   const pan = useRef(new Animated.Value(0)).current;
 
@@ -54,7 +53,7 @@ export default function ToiletInfoContainer() {
           return;
 
         const nextPos = openDegreeHeight[openDegree.current] + gestureState.dy;
-        if (nextPos >= 0.75 * windowHeight) pan.setValue(nextPos);
+        if (nextPos >= 0.85 * windowHeight) pan.setValue(nextPos);
       },
       onPanResponderRelease: (event, gestureState) => {
         if (gestureState.vy < -1) openDegree.current = 2;
