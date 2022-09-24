@@ -1,7 +1,6 @@
 import React, {useEffect, useRef} from 'react';
 import {Button, View, StyleSheet, Animated} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-import commonStyles from '../../common/commonStyles';
 import {RootState} from '../../common/store';
 import {close, open} from '../../common/isMenuOpenReducer';
 import UserMenu from './userMenu';
@@ -18,7 +17,6 @@ const styles = StyleSheet.create({
     position: 'absolute',
     // left: 0,
     top: 0,
-    width: 200,
     height: '100%',
     backgroundColor: '#fff',
   },
@@ -34,11 +32,12 @@ export default function MenuContainer() {
   }, []);
 
   const moveAnim = useRef(new Animated.Value(-200)).current;
+  const menuContainerWidth = 250;
 
   const dispatch = useDispatch();
   const moveLeft = () => {
     Animated.timing(moveAnim, {
-      toValue: -200,
+      toValue: -menuContainerWidth,
       duration: 300,
       useNativeDriver: true,
     }).start();
@@ -66,8 +65,8 @@ export default function MenuContainer() {
     <Animated.View
       style={{
         ...styles.menuContainer,
-        ...commonStyles.border,
         transform: [{translateX: moveAnim}],
+        width: menuContainerWidth,
       }}>
       <UserMenu />
       <View style={styles.buttonStyle}>
