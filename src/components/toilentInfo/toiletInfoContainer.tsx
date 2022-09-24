@@ -1,23 +1,19 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, {useRef} from 'react';
-import {
-  StyleSheet,
-  Animated,
-  PanResponder,
-  Dimensions,
-  Text,
-} from 'react-native';
+import {StyleSheet, Animated, PanResponder, Dimensions} from 'react-native';
 import ToiletInfo from './toiletInfo';
-import devStyles from '../../common/devStyles';
 // 아래쪽에서 잡아당기면 나오는 화장실 정보 관련 컴포넌트.
 
 const styles = StyleSheet.create({
   toiletInfoContainer: {
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
     position: 'absolute',
     width: '100%',
     top: '90%',
     height: '200%',
     backgroundColor: '#fff',
+    padding: 10,
   },
 });
 
@@ -76,11 +72,9 @@ export default function ToiletInfoContainer() {
       {...panResponder.panHandlers}
       style={{
         ...styles.toiletInfoContainer,
-        ...devStyles.border,
         transform: [{translateY: pan}],
       }}>
       <ToiletInfo />
-      <Text>{openDegree.current}</Text>
     </Animated.View>
   );
 }
