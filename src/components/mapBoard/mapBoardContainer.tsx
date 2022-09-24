@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
   mapBoard: {
     flex: 1,
     width: '100%',
-    backgroundColor: '#050',
+    backgroundColor: '#000',
   },
 });
 

@@ -18,7 +18,6 @@ const styles = StyleSheet.create({
     position: 'absolute',
     // left: 0,
     top: 0,
-    width: 200,
     height: '100%',
     backgroundColor: '#fff',
   },
@@ -28,17 +27,18 @@ export default function MenuContainer() {
   const isMenuOpen = useSelector(
     (state: RootState) => state.isMenuOpen.isMenuOpen,
   );
+  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(close());
   }, []);
 
-  const moveAnim = useRef(new Animated.Value(-200)).current;
+  const menuContainerWidth = 250;
+  const moveAnim = useRef(new Animated.Value(-menuContainerWidth)).current;
 
-  const dispatch = useDispatch();
   const moveLeft = () => {
     Animated.timing(moveAnim, {
-      toValue: -200,
+      toValue: -menuContainerWidth,
       duration: 300,
       useNativeDriver: true,
     }).start();
@@ -66,8 +66,8 @@ export default function MenuContainer() {
     <Animated.View
       style={{
         ...styles.menuContainer,
-        ...devStyles.border,
         transform: [{translateX: moveAnim}],
+        width: menuContainerWidth,
       }}>
       <UserMenu />
       <View style={styles.buttonStyle}>
