@@ -26,15 +26,15 @@ export default function MenuContainer() {
   const isMenuOpen = useSelector(
     (state: RootState) => state.isMenuOpen.isMenuOpen,
   );
+  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(close());
   }, []);
 
-  const moveAnim = useRef(new Animated.Value(-200)).current;
   const menuContainerWidth = 250;
+  const moveAnim = useRef(new Animated.Value(-menuContainerWidth)).current;
 
-  const dispatch = useDispatch();
   const moveLeft = () => {
     Animated.timing(moveAnim, {
       toValue: -menuContainerWidth,
