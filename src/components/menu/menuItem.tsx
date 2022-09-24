@@ -5,9 +5,11 @@ import PropTypes from 'prop-types';
 const styles = StyleSheet.create({
   itemStyle: {
     marginLeft: 15,
+    marginRight: 15,
     marginBottom: 20,
     height: 30,
-    width: '100%',
+    borderBottomWidth: 0.5,
+    borderBottomColor: '#cacaca',
   },
   menuTextStyle: {
     color: '#000',
