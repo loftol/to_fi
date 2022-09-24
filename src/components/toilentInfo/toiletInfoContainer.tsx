@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
 import ToiletInfo from './toiletInfo';
-import commonStyles from '../../common/commonStyles';
+import devStyles from '../../common/devStyles';
 // 아래쪽에서 잡아당기면 나오는 화장실 정보 관련 컴포넌트.
 
 const styles = StyleSheet.create({
@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
 
 export default function ToiletInfoContainer() {
   return (
-    <View style={[styles.toiletInfoContainer, commonStyles.border]}>
+    <View style={[styles.toiletInfoContainer, devStyles.border]}>
       <ToiletInfo />
     </View>
   );
