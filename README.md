@@ -31,6 +31,13 @@ export default localInfo;
 HOST='hostIp에 써놓은 거랑 같은 ip'
 ```
 
+webapp 쪽에도 .env 파일 추가해주고
+```
+REACT_APP_KAKAO_KEY=(카카오 api에서 할당받은 key)
+HOST=0.0.0.0
+```
+이렇게 작성하면 됨
+
 If you are devloping for android then
 ```
 yarn android
