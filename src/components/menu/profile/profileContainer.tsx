@@ -10,8 +10,6 @@ const styles = StyleSheet.create({
   containerStyle: {
     height: '25%',
     backgroundColor: '#fff',
-    borderBottomColor: '#333',
-    borderBottomWidth: 0.5,
   },
   imageStyle: {
     resizeMode: 'cover',
@@ -19,7 +17,7 @@ const styles = StyleSheet.create({
     height: '100%',
     width: '100%',
     borderRadius: 20,
-    borderColor: '#222',
+    borderColor: '#020202',
     borderWidth: 3,
   },
   userStyle: {

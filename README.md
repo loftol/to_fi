@@ -14,6 +14,23 @@ yarn add react-native-cli -g
 
 ## run this project
 
+처음 실행한다면 최상위 디렉토리에
+localInfo.ts 파일 생성 후
+
+```
+const localInfo = {
+  hostIp: '자기 ip 및 port(map web 쪽에서 사용하는 ip)',
+};
+
+export default localInfo;
+```
+위와 같은 코드 추가하고,
+
+.env 파일도 추가한 후
+```
+HOST='hostIp에 써놓은 거랑 같은 ip'
+```
+
 If you are devloping for android then
 ```
 yarn android

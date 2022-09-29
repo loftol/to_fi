@@ -6,11 +6,11 @@ import ProfileContainer from './profile/profileContainer';
 
 const styles = StyleSheet.create({
   itemContainerStyle: {
-    width: '100%',
+    margin: 10,
     paddingTop: 15,
     paddingRight: '2%',
-    backgroundColor: '#eee',
-    borderBottomWidth: 0.5,
+    backgroundColor: '#f2f2f2',
+    borderRadius: 15,
   },
   profile: {
     marginBottom: 15,
