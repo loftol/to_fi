@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
 import {View, Text, StyleSheet, Button} from 'react-native';
+import {useDispatch} from 'react-redux';
+import {open} from '../../../common/isReviewOpenReducer';
 
 import commonStyles from '../../../common/commonStyles';
 import ReviewInput from './ReviewInput';
@@ -20,10 +22,10 @@ const styles = StyleSheet.create({
 });
 
 export default function ToiletReviewList() {
-  const [reviewPageOpen, setReviewPageOpen] = useState(false);
+  const dispatch = useDispatch();
 
   const buttonPressHandler = () => {
-    setReviewPageOpen(prevState => !prevState);
+    dispatch(open());
   };
 
   return (
