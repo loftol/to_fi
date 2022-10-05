@@ -26,10 +26,6 @@ export default function ReviewPage() {
   );
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(close());
-  }, []);
-
   const windowWidth = Dimensions.get('window').height;
   const moveAnim = useRef(new Animated.Value(windowWidth)).current;
 

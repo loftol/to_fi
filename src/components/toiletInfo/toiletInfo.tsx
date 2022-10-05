@@ -2,6 +2,8 @@ import React, {Fragment} from 'react';
 import {StyleSheet, View, Text} from 'react-native';
 import ReviewList from './ToiletReview/ReviewList';
 
+import datas from './dummydata';
+
 const styles = StyleSheet.create({
   guideBar: {
     borderRadius: 20,
@@ -32,7 +34,7 @@ export default function toiletInfo() {
         <Text style={{fontWeight: 'bold'}}>주소</Text>
         <Text>서울시 마포구 광성로 6길 56</Text>
       </View>
-      <ReviewList />
+      <ReviewList reviews={datas[0].review} />
     </>
   );
 }

@@ -40,4 +40,7 @@ module.exports = {
       typescript: {},
     },
   },
+  globals: {
+    JSX: true,
+  },
 };
