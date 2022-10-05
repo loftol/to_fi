@@ -43,6 +43,7 @@ export default function MenuContainer() {
       useNativeDriver: true,
     }).start();
   };
+
   const moveRight = () => {
     Animated.timing(moveAnim, {
       toValue: 0,

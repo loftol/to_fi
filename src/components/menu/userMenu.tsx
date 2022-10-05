@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
     margin: 10,
     paddingTop: 15,
     paddingRight: '2%',
-    backgroundColor: '#f2f2f2',
+    backgroundColor: '#f5f5f5',
     borderRadius: 15,
   },
   profile: {
