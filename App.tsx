@@ -6,6 +6,7 @@ import store from './src/common/store';
 import {
   MapBoardContainer,
   MenuContainer,
+  SearchBar,
   ToiletInfoContainer,
   ReviewPage,
 } from './src/components/mainComponents';
@@ -31,6 +32,7 @@ function FlexWrapper() {
   return (
     <View style={[styles.flexWrapper]}>
       <MapBoardContainer />
+      <SearchBar />
       <ToiletInfoContainer />
     </View>
   );

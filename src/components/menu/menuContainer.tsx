@@ -1,8 +1,8 @@
 import React, {useEffect, useRef} from 'react';
-import {Button, View, StyleSheet, Animated} from 'react-native';
+import {StyleSheet, Animated, PanResponder} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../../common/store';
-import {close, open} from '../../common/isMenuOpenReducer';
+import {close} from '../../common/isMenuOpenReducer';
 import UserMenu from './userMenu';
 
 const styles = StyleSheet.create({
@@ -34,6 +34,7 @@ export default function MenuContainer() {
 
   const menuContainerWidth = 250;
   const moveAnim = useRef(new Animated.Value(-menuContainerWidth)).current;
+  const pan = useRef(new Animated.Value(0)).current;
 
   const moveLeft = () => {
     Animated.timing(moveAnim, {
@@ -50,31 +51,34 @@ export default function MenuContainer() {
     }).start();
   };
 
-  const openMenu = () => {
-    dispatch(open());
+  if (isMenuOpen) {
     moveRight();
-  };
-  const closeMenu = () => {
-    dispatch(close());
+  } else {
     moveLeft();
-  };
+  }
 
-  const changeMenuState = () => (isMenuOpen ? closeMenu() : openMenu());
+  const panResponder = useRef(
+    PanResponder.create({
+      onMoveShouldSetPanResponder: () => true,
+      onPanResponderMove: (event, gestureState) => {
+        const nextPos = gestureState.dx;
+        if (nextPos <= 0) pan.setValue(nextPos);
+      },
+      onPanResponderRelease: (event, gestureState) => {
+        if (gestureState.vx < -1) dispatch(close());
+      },
+    }),
+  ).current;
 
   return (
     <Animated.View
+      {...panResponder.panHandlers}
       style={{
         ...styles.menuContainer,
         transform: [{translateX: moveAnim}],
         width: menuContainerWidth,
       }}>
       <UserMenu />
-      <View style={styles.buttonStyle}>
-        <Button
-          onPress={() => changeMenuState()}
-          title={isMenuOpen ? 'close' : 'open'}
-        />
-      </View>
     </Animated.View>
   );
 }
