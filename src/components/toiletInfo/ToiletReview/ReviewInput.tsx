@@ -19,7 +19,7 @@ export default function ReviewInput() {
   return (
     <View style={styles.reviewInputContainer}>
       <Text style={{fontWeight: 'bold'}}>리뷰 쓰기</Text>
-      <TextInput style={styles.inputBox} defaultValue="리뷰를 입력해주세요" />
+      <TextInput style={styles.inputBox} placeholder="리뷰를 입력해주세요" />
     </View>
   );
 }

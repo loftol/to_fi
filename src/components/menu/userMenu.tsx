@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, SafeAreaView} from 'react-native';
 import MenuItem from './menuItem';
 import ProfileContainer from './profile/profileContainer';
 // 메뉴 관련 컴포넌트, 위쪽에 styles, 아래쪽에 컴포넌트 순서대로 배치
@@ -24,15 +24,17 @@ const styles = StyleSheet.create({
 export default function userMenu() {
   return (
     <View style={{height: '100%', backgroundColor: '#fff'}}>
-      <ProfileContainer />
-      <View style={[styles.itemContainerStyle]}>
-        <MenuItem itemName="menu1" />
-        <MenuItem itemName="menu2" />
-        <MenuItem itemName="menu3" />
-        <MenuItem itemName="menu4" />
-        <MenuItem itemName="menu5" />
-        <MenuItem itemName="menu6" />
-      </View>
+      <SafeAreaView>
+        <ProfileContainer />
+        <View style={[styles.itemContainerStyle]}>
+          <MenuItem itemName="menu1" />
+          <MenuItem itemName="menu2" />
+          <MenuItem itemName="menu3" />
+          <MenuItem itemName="menu4" />
+          <MenuItem itemName="menu5" />
+          <MenuItem itemName="menu6" />
+        </View>
+      </SafeAreaView>
     </View>
   );
 }
