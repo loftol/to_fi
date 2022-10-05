@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
     color: 'white',
     position: 'absolute',
     right: -100,
-    top: 20,
+    top: 50,
   },
   menuContainer: {
     position: 'absolute',

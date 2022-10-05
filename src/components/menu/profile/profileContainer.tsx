@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, StyleSheet, Image, Text} from 'react-native';
-import SquareButton from '../../common/squareButton';
+import SquareButton from '../../UI/squareButton';
 
 const profileImage = require('../../../image/profileImage.jpg');
 

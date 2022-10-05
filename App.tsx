@@ -2,11 +2,13 @@ import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Provider} from 'react-redux';
 import store from './src/common/store';
+
 import {
   MapBoardContainer,
   MenuContainer,
   SearchBar,
   ToiletInfoContainer,
+  ReviewPage,
 } from './src/components/mainComponents';
 
 const styles = StyleSheet.create({
@@ -43,6 +45,7 @@ const App = ({}: Props) => (
     <View style={[styles.backgroundStyle, {height: '100%'}]}>
       <FlexWrapper />
       <MenuContainer />
+      <ReviewPage />
     </View>
   </Provider>
 );
