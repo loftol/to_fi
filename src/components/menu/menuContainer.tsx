@@ -52,12 +52,15 @@ export default function MenuContainer() {
 
   const openMenu = () => {
     dispatch(open());
-    moveRight();
   };
   const closeMenu = () => {
     dispatch(close());
-    moveLeft();
   };
+
+  useEffect(() => {
+    if (isMenuOpen) moveRight();
+    else moveLeft();
+  }, [isMenuOpen]);
 
   const changeMenuState = () => (isMenuOpen ? closeMenu() : openMenu());
 

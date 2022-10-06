@@ -37,7 +37,12 @@ export default function ToiletReviewList(props: PropTypes) {
   const {reviews} = props;
 
   const showReview: JSX.Element | JSX.Element[] = reviews.map(review => (
-    <ReviewItem name={review.name} main={review.main} />
+    <ReviewItem
+      key={review.id}
+      id={review.id}
+      name={review.name}
+      main={review.main}
+    />
   ));
 
   return (

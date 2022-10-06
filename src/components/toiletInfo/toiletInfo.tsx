@@ -1,10 +1,20 @@
-import React, {Fragment} from 'react';
-import {StyleSheet, View, Text} from 'react-native';
+import React from 'react';
+import {StyleSheet, View, Text, Dimensions} from 'react-native';
 import ReviewList from './ToiletReview/ReviewList';
 
 import datas from './dummydata';
 
 const styles = StyleSheet.create({
+  toiletInfoContainer: {
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor: 'white',
+    height: '90%',
+    width: '19%',
+    backgroundColor: '#fff',
+    padding: 10,
+    margin: '0.5%',
+  },
   guideBar: {
     borderRadius: 20,
     backgroundColor: '#808080',
@@ -25,16 +35,20 @@ const styles = StyleSheet.create({
   },
 });
 
+// const toiletInfoView: JSX.Element | JSX.Element[] = datas.map(info => (
+//   <ReviewItem name={review.name} main={review.main} />
+// ));
+
 export default function toiletInfo() {
   return (
-    <>
+    <View style={styles.toiletInfoContainer}>
       <View style={styles.guideBar} />
-      <Text style={styles.toiletName}>멋진 화장실 이름</Text>
+      <Text style={styles.toiletName}>{datas[0].name}</Text>
       <View style={styles.toiletAddress}>
         <Text style={{fontWeight: 'bold'}}>주소</Text>
-        <Text>서울시 마포구 광성로 6길 56</Text>
+        <Text>{datas[0].address}</Text>
       </View>
       <ReviewList reviews={datas[0].review} />
-    </>
+    </View>
   );
 }
