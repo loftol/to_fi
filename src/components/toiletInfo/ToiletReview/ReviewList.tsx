@@ -36,7 +36,7 @@ export default function ToiletReviewList(props: PropTypes) {
 
   const {reviews} = props;
 
-  const showReview: JSX.Element | JSX.Element[] = reviews.map(review => (
+  const showReview = reviews.map(review => (
     <ReviewItem
       key={review.id}
       id={review.id}

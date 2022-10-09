@@ -1,8 +1,7 @@
 import React from 'react';
-import {StyleSheet, View, Text, Dimensions} from 'react-native';
+import {StyleSheet, View, Text} from 'react-native';
 import ReviewList from './ToiletReview/ReviewList';
-
-import datas from './dummydata';
+import {ToiletData} from './dummydata';
 
 const styles = StyleSheet.create({
   toiletInfoContainer: {
@@ -35,20 +34,20 @@ const styles = StyleSheet.create({
   },
 });
 
-// const toiletInfoView: JSX.Element | JSX.Element[] = datas.map(info => (
-//   <ReviewItem name={review.name} main={review.main} />
-// ));
+interface propType {
+  toiletData: ToiletData;
+}
 
-export default function toiletInfo() {
+export default function toiletInfo(props: propType) {
   return (
     <View style={styles.toiletInfoContainer}>
       <View style={styles.guideBar} />
-      <Text style={styles.toiletName}>{datas[0].name}</Text>
+      <Text style={styles.toiletName}>{props.toiletData.name}</Text>
       <View style={styles.toiletAddress}>
         <Text style={{fontWeight: 'bold'}}>주소</Text>
-        <Text>{datas[0].address}</Text>
+        <Text>{props.toiletData.address}</Text>
       </View>
-      <ReviewList reviews={datas[0].review} />
+      <ReviewList reviews={props.toiletData.review} />
     </View>
   );
 }

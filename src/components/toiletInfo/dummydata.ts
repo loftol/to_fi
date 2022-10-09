@@ -49,7 +49,7 @@ const toiletArray: Array<ToiletData> = [
     ],
   },
   {
-    id: 4,
+    id: 5,
     name: '최신 화장실',
     address: '서울시 마포구 광성로 6길 60',
     review: [
