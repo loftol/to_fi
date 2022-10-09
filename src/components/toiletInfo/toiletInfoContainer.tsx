@@ -71,6 +71,7 @@ export default function ToiletInfoContainer() {
   ).current;
 
   vertical.cleanUp(infoOpened, menuOpened);
+
   return (
     <Animated.View
       {...panResponder.panHandlers}
