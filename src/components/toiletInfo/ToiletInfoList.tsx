@@ -1,9 +1,10 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
+import {useSelector} from 'react-redux';
 
+import {RootState} from '../../common/store';
 import ToiletInfo from './toiletInfo';
-import datas from './dummydata';
 
 const styles = StyleSheet.create({
   toiletInfoList: {
@@ -14,6 +15,8 @@ const styles = StyleSheet.create({
 });
 
 export default function ToiletInfoList() {
+  const datas = useSelector((state: RootState) => state.toiletData.datas);
+
   const toiletInfoView = datas.map(data => (
     <ToiletInfo key={data.id} toiletData={data} />
   ));

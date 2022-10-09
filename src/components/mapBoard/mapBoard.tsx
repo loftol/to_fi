@@ -2,7 +2,6 @@ import React from 'react';
 import {View} from 'react-native';
 import {WebView} from 'react-native-webview';
 import {useDispatch} from 'react-redux';
-import {change} from '../../common/toiletIdReducer';
 import localData from '../../../localInfo';
 
 export default function mapBoard() {
@@ -10,7 +9,6 @@ export default function mapBoard() {
 
   const handleOnMessage = ({nativeEvent: {data}}) => {
     const {id} = JSON.parse(data);
-    dispatch(change(id));
   };
 
   return (

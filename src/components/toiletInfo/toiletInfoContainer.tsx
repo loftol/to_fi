@@ -1,11 +1,10 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, {useRef} from 'react';
+import React, {useRef, useEffect} from 'react';
 import {StyleSheet, Animated, PanResponder, Dimensions} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 
 import ToiletInfoList from './ToiletInfoList';
 import {RootState} from '../../common/store';
-import datas from './dummydata';
 
 import Horizontal from './moveContainer/moveHorizontal';
 import Vertical from './moveContainer/moveVertical';
@@ -36,14 +35,21 @@ export default function ToiletInfoContainer() {
     state.isMenuOpen.isMenuOpen,
   ]);
 
+  const numberOfData = useSelector(
+    (state: RootState) => state.toiletData.datas.length,
+  );
+
   const windowHeight = -Dimensions.get('window').height;
 
   const windowWidth = Dimensions.get('window').width;
 
-  const horizontal = useRef(new Horizontal(windowWidth, 5)).current;
+  const horizontal = useRef(new Horizontal(windowWidth)).current;
   const vertical = useRef(new Vertical(windowHeight)).current;
 
+  horizontal.updateItemCount(numberOfData);
+
   let direction: string;
+
   const panResponder = useRef(
     PanResponder.create({
       onMoveShouldSetPanResponder: () => true,

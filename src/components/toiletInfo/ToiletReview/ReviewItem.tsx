@@ -4,7 +4,7 @@ import {View, Text} from 'react-native';
 
 import commonStyles from '../../../common/commonStyles';
 
-import {ReviewData} from '../dummydata';
+import {ReviewData} from '../../../common/toiletDataReducer';
 
 export default function ReviewItem(props: ReviewData) {
   const {name, main} = props;

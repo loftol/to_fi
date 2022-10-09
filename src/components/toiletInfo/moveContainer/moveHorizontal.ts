@@ -11,9 +11,9 @@ class Horizontal {
 
   private selectedItem = 0;
 
-  private itemCount: number;
+  private itemCount = 0;
 
-  constructor(windowWidth: number, itemCount: number) {
+  constructor(windowWidth: number) {
     this.unitWidth = windowWidth;
     this.itemSection = [
       windowWidth * 0,
@@ -22,11 +22,13 @@ class Horizontal {
       windowWidth * 3,
       windowWidth * 4,
     ];
-    this.itemCount = itemCount;
   }
 
   private whichItemSelected(dx: number) {
-    if (dx <= -this.unitWidth * 0.4 && this.selectedItem !== 4) {
+    if (
+      dx <= -this.unitWidth * 0.4 &&
+      this.selectedItem !== this.itemCount - 1
+    ) {
       this.selectedItem += 1;
     }
     if (this.unitWidth <= dx && this.selectedItem !== 0) {
@@ -41,7 +43,9 @@ class Horizontal {
   public onRelease(vx: number, dx: number) {
     if (vx < -1) {
       this.selectedItem =
-        this.selectedItem === 4 ? this.selectedItem : this.selectedItem + 1;
+        this.selectedItem === this.itemCount - 1
+          ? this.selectedItem
+          : this.selectedItem + 1;
     } else if (vx > 1) {
       this.selectedItem =
         this.selectedItem === 0 ? this.selectedItem : this.selectedItem - 1;
@@ -52,6 +56,10 @@ class Horizontal {
       toValue: -this.itemSection[this.selectedItem],
       useNativeDriver: true,
     }).start();
+  }
+
+  public updateItemCount(itemCount: number) {
+    this.itemCount = itemCount;
   }
 }
 

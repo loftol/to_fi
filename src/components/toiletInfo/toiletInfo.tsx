@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, View, Text} from 'react-native';
 import ReviewList from './ToiletReview/ReviewList';
-import {ToiletData} from './dummydata';
+import {ToiletData} from '../../common/toiletDataReducer';
 
 const styles = StyleSheet.create({
   toiletInfoContainer: {

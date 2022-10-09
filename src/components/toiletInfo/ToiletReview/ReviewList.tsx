@@ -7,7 +7,7 @@ import commonStyles from '../../../common/commonStyles';
 import ReviewInput from './ReviewInput';
 import ReviewItem from './ReviewItem';
 
-import {ReviewData} from '../dummydata';
+import {ReviewData} from '../../../common/toiletDataReducer';
 
 const styles = StyleSheet.create({
   reviewContainer: {

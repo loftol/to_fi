@@ -74,7 +74,7 @@ class Vertical {
       (!infoOpened && this.openDegree === 2) ||
       (menuOpened && this.openDegree !== 0)
     ) {
-      // this.openDegree = 0;
+      this.openDegree = 0;
       Animated.spring(this.pan, {
         toValue: this.openDegreeHeight[0],
         useNativeDriver: true,
