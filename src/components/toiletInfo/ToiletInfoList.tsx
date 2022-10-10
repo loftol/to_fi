@@ -3,7 +3,9 @@ import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {useSelector} from 'react-redux';
 
+import {ToiletData} from '../../common/toiletDataReducer';
 import {RootState} from '../../common/store';
+
 import ToiletInfo from './toiletInfo';
 
 const styles = StyleSheet.create({
@@ -16,8 +18,7 @@ const styles = StyleSheet.create({
 
 export default function ToiletInfoList() {
   const datas = useSelector((state: RootState) => state.toiletData.datas);
-
-  const toiletInfoView = datas.map(data => (
+  const toiletInfoView = datas.map((data: ToiletData) => (
     <ToiletInfo key={data.id} toiletData={data} />
   ));
 

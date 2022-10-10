@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-param-reassign */
-import {createSlice} from '@reduxjs/toolkit';
+import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
+import axios from 'axios';
 
 interface ReviewData {
   id: number;
@@ -15,65 +16,43 @@ interface ToiletData {
   review: Array<ReviewData>;
 }
 
-const initialState = {
-  datas: [
-    {
-      id: 1,
-      name: '멋진 화장실',
-      address: '서울시 마포구 광성로 6길 56',
-      review: [
-        {id: 1, name: '우진', main: '최악의 화장실이었어요'},
-        {id: 2, name: '세진', main: '최고의 화장실이었어요'},
-      ],
-    },
-    {
-      id: 2,
-      name: '예쁜 화장실',
-      address: '서울시 마포구 광성로 6길 57',
-      review: [
-        {id: 1, name: '우진', main: '최악의 화장실이었어요'},
-        {id: 2, name: '세진', main: '최고의 화장실이었어요'},
-      ],
-    },
-    {
-      id: 3,
-      name: '더러운 화장실',
-      address: '서울시 마포구 광성로 6길 58',
-      review: [
-        {id: 1, name: '우진', main: '최악의 화장실이었어요'},
-        {id: 2, name: '세진', main: '최고의 화장실이었어요'},
-      ],
-    },
-    // {
-    //   id: 4,
-    //   name: '깨끗한 화장실',
-    //   address: '서울시 마포구 광성로 6길 59',
-    //   review: [
-    //     {id: 1, name: '우진', main: '최악의 화장실이었어요'},
-    //     {id: 2, name: '세진', main: '최고의 화장실이었어요'},
-    //   ],
-    // },
-    // {
-    //   id: 5,
-    //   name: '최신 화장실',
-    //   address: '서울시 마포구 광성로 6길 60',
-    //   review: [
-    //     {id: 1, name: '우진', main: '최악의 화장실이었어요'},
-    //     {id: 2, name: '세진', main: '최고의 화장실이었어요'},
-    //   ],
-    // },
-  ],
+interface stateType {
+  datas: Array<ToiletData>;
+}
+
+const addData = createAsyncThunk(
+  'toiletData/addData',
+  async (toiletId: number, thunkAPI) => {
+    console.log(toiletId);
+    const newData = JSON.parse(
+      (await axios.get(`http://172.30.1.73:3000/info/${toiletId}`)).data,
+    );
+    return newData;
+  },
+);
+
+const initialState: stateType = {
+  datas: [],
 };
 
 const dataSlice = createSlice({
   name: 'toiletData',
   initialState,
   reducers: {
-    addData(state, action) {},
-    deleteData(state, action) {},
+    deleteData(state, action) {
+      //  action.payload = toilet ID to delete
+    },
+  },
+  extraReducers: builder => {
+    builder.addCase(addData.fulfilled, (state, action) => {
+      state.datas.unshift(action.payload);
+      if (state.datas.length > 5) state.datas.pop();
+    });
   },
 });
 
 export {ReviewData, ToiletData};
-export const {addData, deleteData} = dataSlice.actions;
+export const {deleteData} = dataSlice.actions;
+export {addData};
+
 export default dataSlice.reducer;
