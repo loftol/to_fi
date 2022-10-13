@@ -4,11 +4,14 @@ import {WebView} from 'react-native-webview';
 import {useDispatch} from 'react-redux';
 import localData from '../../../localInfo';
 
+import {addData} from '../../common/toiletDataReducer';
+
 export default function mapBoard() {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<any>();
 
   const handleOnMessage = ({nativeEvent: {data}}) => {
     const {id} = JSON.parse(data);
+    dispatch(addData(+id));
   };
 
   return (

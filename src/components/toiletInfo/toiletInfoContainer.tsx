@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, {useEffect, useRef} from 'react';
+import React, {useRef} from 'react';
 import {StyleSheet, Animated, PanResponder, Dimensions} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 
@@ -8,8 +8,6 @@ import {RootState} from '../../common/store';
 
 import Horizontal from './moveContainer/moveHorizontal';
 import Vertical from './moveContainer/moveVertical';
-
-import {addData} from '../../common/toiletDataReducer';
 
 // 아래쪽에서 잡아당기면 나오는 화장실 정보 관련 컴포넌트.
 
@@ -30,11 +28,7 @@ const selectDir = (dy: number, dx: number) => {
 };
 
 export default function ToiletInfoContainer() {
-  const dispatch = useDispatch<any>();
-  useEffect(() => {
-    dispatch(addData(1));
-    dispatch(addData(2));
-  }, []);
+  const dispatch = useDispatch();
 
   const [infoOpened, menuOpened] = useSelector((state: RootState) => [
     state.infoOpened.infoOpened,

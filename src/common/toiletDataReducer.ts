@@ -23,11 +23,12 @@ interface stateType {
 const addData = createAsyncThunk(
   'toiletData/addData',
   async (toiletId: number, thunkAPI) => {
-    console.log(toiletId);
-    const newData = JSON.parse(
-      (await axios.get(`http://172.30.1.73:3000/info/${toiletId}`)).data,
-    );
-    return newData;
+    const newData = await axios
+      .get(`http://192.168.0.102:3000/info/${toiletId}`)
+      .then(fileData => JSON.parse(fileData.data))
+      .catch(err => console.log(err));
+    console.log(newData);
+    return {...newData, id: toiletId};
   },
 );
 
@@ -41,11 +42,22 @@ const dataSlice = createSlice({
   reducers: {
     deleteData(state, action) {
       //  action.payload = toilet ID to delete
+      state.datas = state.datas.filter(data => data.id !== action.payload);
     },
   },
   extraReducers: builder => {
     builder.addCase(addData.fulfilled, (state, action) => {
-      state.datas.unshift(action.payload);
+      console.log(action.payload);
+      const newToilet = {
+        id: action.payload.id,
+        name: action.payload['화장실명'],
+        address: action.payload['소재지도로명주소']
+          ? action.payload['소재지도로명주소']
+          : action.payload['소재지지번주소'],
+        review: [],
+      };
+      console.log(newToilet);
+      state.datas.unshift(newToilet);
       if (state.datas.length > 5) state.datas.pop();
     });
   },
