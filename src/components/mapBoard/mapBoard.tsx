@@ -2,9 +2,7 @@ import React from 'react';
 import {View} from 'react-native';
 import {WebView} from 'react-native-webview';
 import {useDispatch} from 'react-redux';
-import {change} from '../../common/toiletIdReducer';
 import localInfo from '../../../localInfo';
-
 
 import {addData} from '../../common/toiletDataReducer';
 
