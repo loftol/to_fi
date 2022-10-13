@@ -1,3 +1,5 @@
+const { Animated } = require("react-native");
+
 module.exports = {
   env: {
     es2021: true,
@@ -34,6 +36,7 @@ module.exports = {
       {namedcomponents: 'arrow-function'},
     ],
     'react/prop-types': 'off',
+    'react/jsx-props-no-spreading': 'off',
   },
   settings: {
     'import/resolver': {
