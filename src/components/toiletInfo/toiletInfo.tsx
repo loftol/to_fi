@@ -1,8 +1,19 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import {StyleSheet, View, Text} from 'react-native';
 import ReviewList from './ToiletReview/ReviewList';
+import {ToiletData} from '../../common/toiletDataReducer';
 
 const styles = StyleSheet.create({
+  toiletInfoContainer: {
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor: 'white',
+    height: '90%',
+    width: '19%',
+    backgroundColor: '#fff',
+    padding: 10,
+    margin: '0.5%',
+  },
   guideBar: {
     borderRadius: 20,
     backgroundColor: '#808080',
@@ -23,16 +34,20 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function toiletInfo() {
+interface propType {
+  toiletData: ToiletData;
+}
+
+export default function toiletInfo(props: propType) {
   return (
-    <>
+    <View style={styles.toiletInfoContainer}>
       <View style={styles.guideBar} />
-      <Text style={styles.toiletName}>멋진 화장실 이름</Text>
+      <Text style={styles.toiletName}>{props.toiletData.name}</Text>
       <View style={styles.toiletAddress}>
         <Text style={{fontWeight: 'bold'}}>주소</Text>
-        <Text>서울시 마포구 광성로 6길 56</Text>
+        <Text>{props.toiletData.address}</Text>
       </View>
-      <ReviewList />
-    </>
+      <ReviewList reviews={props.toiletData.review} />
+    </View>
   );
 }

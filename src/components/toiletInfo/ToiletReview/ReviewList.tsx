@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {View, Text, StyleSheet, Button} from 'react-native';
 import {useDispatch} from 'react-redux';
 import {open} from '../../../common/isReviewOpenReducer';
@@ -6,6 +6,8 @@ import {open} from '../../../common/isReviewOpenReducer';
 import commonStyles from '../../../common/commonStyles';
 import ReviewInput from './ReviewInput';
 import ReviewItem from './ReviewItem';
+
+import {ReviewData} from '../../../common/toiletDataReducer';
 
 const styles = StyleSheet.create({
   reviewContainer: {
@@ -21,12 +23,27 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function ToiletReviewList() {
+interface PropTypes {
+  reviews: Array<ReviewData>;
+}
+
+export default function ToiletReviewList(props: PropTypes) {
   const dispatch = useDispatch();
 
   const buttonPressHandler = () => {
     dispatch(open());
   };
+
+  const {reviews} = props;
+
+  const showReview = reviews.map(review => (
+    <ReviewItem
+      key={review.id}
+      id={review.id}
+      name={review.name}
+      main={review.main}
+    />
+  ));
 
   return (
     <>
@@ -34,9 +51,7 @@ export default function ToiletReviewList() {
         <View style={commonStyles.bottomBorderBox}>
           <Text>4.0 점 별별별별별</Text>
         </View>
-        <ReviewItem />
-        <ReviewItem />
-        <ReviewItem />
+        {showReview}
         <View style={styles.showMoreReviewButton}>
           <Button title="리뷰 더 보기" onPress={buttonPressHandler} />
         </View>

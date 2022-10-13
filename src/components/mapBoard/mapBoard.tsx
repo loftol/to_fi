@@ -5,12 +5,15 @@ import {useDispatch} from 'react-redux';
 import {change} from '../../common/toiletIdReducer';
 import localInfo from '../../../localInfo';
 
+
+import {addData} from '../../common/toiletDataReducer';
+
 export default function mapBoard() {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<any>();
 
   const handleOnMessage = ({nativeEvent: {data}}) => {
     const {id} = JSON.parse(data);
-    dispatch(change(id));
+    dispatch(addData(+id));
   };
 
   return (

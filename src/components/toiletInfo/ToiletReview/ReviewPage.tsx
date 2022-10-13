@@ -1,4 +1,4 @@
-import React, {useEffect, useRef} from 'react';
+import React, {useRef} from 'react';
 import {
   StyleSheet,
   SafeAreaView,
@@ -25,10 +25,6 @@ export default function ReviewPage() {
     (state: RootState) => state.isReviewOpen.isReviewOpen,
   );
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(close());
-  }, []);
 
   const windowWidth = Dimensions.get('window').height;
   const moveAnim = useRef(new Animated.Value(windowWidth)).current;
