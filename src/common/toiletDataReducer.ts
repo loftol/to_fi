@@ -28,7 +28,6 @@ const addData = createAsyncThunk(
       .get(`${localInfo.hostIp}info/${toiletId}`)
       .then(fileData => JSON.parse(fileData.data))
       .catch(err => console.log(err));
-    console.log(newData);
     return {...newData, id: toiletId};
   },
 );
@@ -48,7 +47,6 @@ const dataSlice = createSlice({
   },
   extraReducers: builder => {
     builder.addCase(addData.fulfilled, (state, action) => {
-      console.log(action.payload);
       const newToilet = {
         id: action.payload.id,
         name: action.payload['화장실명'],
@@ -57,7 +55,6 @@ const dataSlice = createSlice({
           : action.payload['소재지지번주소'],
         review: [],
       };
-      console.log(newToilet);
       state.datas.unshift(newToilet);
       if (state.datas.length > 5) state.datas.pop();
     });
