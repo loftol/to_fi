@@ -11,6 +11,7 @@ import {addData, deleteData} from './src/common/toiletDataReducer';
 import {
   MapBoardContainer,
   MenuContainer,
+  SearchBar,
   ToiletInfoContainer,
   ReviewPage,
 } from './src/components/mainComponents';
@@ -70,6 +71,7 @@ function FlexWrapper() {
   return (
     <View style={[styles.flexWrapper]} onTouchStart={touchStartHandler}>
       <MapBoardContainer />
+      <SearchBar />
       <ToiletInfoContainer />
       <View style={styles.tmpButton}>
         <RoundButton title="+" onPressHandler={plusPressHandler} />
