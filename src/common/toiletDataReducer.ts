@@ -2,6 +2,7 @@
 /* eslint-disable no-param-reassign */
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
 import axios from 'axios';
+import localInfo from '../../localInfo';
 
 interface ReviewData {
   id: number;
@@ -23,8 +24,9 @@ interface stateType {
 const addData = createAsyncThunk(
   'toiletData/addData',
   async (toiletId: number, thunkAPI) => {
+    console.log(`${localInfo.hostIp}/info/${toiletId}`);
     const newData = await axios
-      .get(`http://192.168.0.102:3000/info/${toiletId}`)
+      .get(`${localInfo.hostIp}/info/${toiletId}`)
       .then(fileData => JSON.parse(fileData.data))
       .catch(err => console.log(err));
     return {...newData, id: toiletId};

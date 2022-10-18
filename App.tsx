@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     width: 'auto',
     height: 'auto',
     right: '5%',
-    top: '3%',
+    top: '10%',
   },
 });
 
@@ -71,7 +71,6 @@ function FlexWrapper() {
   return (
     <View style={[styles.flexWrapper]} onTouchStart={touchStartHandler}>
       <MapBoardContainer />
-      <SearchBar />
       <ToiletInfoContainer />
       <View style={styles.tmpButton}>
         <RoundButton title="+" onPressHandler={plusPressHandler} />
@@ -86,6 +85,7 @@ interface Props {}
 const App = ({}: Props) => (
   <Provider store={store}>
     <View style={styles.backgroundStyle}>
+      <SearchBar />
       <FlexWrapper />
       <MenuContainer />
       <ReviewPage />

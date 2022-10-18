@@ -11,6 +11,10 @@ import Vertical from './moveContainer/moveVertical';
 
 // 아래쪽에서 잡아당기면 나오는 화장실 정보 관련 컴포넌트.
 
+const windowHeight = Dimensions.get('window').height;
+
+const windowWidth = Dimensions.get('window').width;
+
 const styles = StyleSheet.create({
   toiletInfoContainer: {
     position: 'absolute',
@@ -19,6 +23,7 @@ const styles = StyleSheet.create({
     left: 0,
     height: '100%',
     flexDirection: 'row',
+    elevation: 5,
   },
 });
 
@@ -38,10 +43,6 @@ export default function ToiletInfoContainer() {
   const numberOfData = useSelector(
     (state: RootState) => state.toiletData.datas.length,
   );
-
-  const windowHeight = -Dimensions.get('window').height;
-
-  const windowWidth = Dimensions.get('window').width;
 
   const horizontal = useRef(new Horizontal(windowWidth)).current;
   const vertical = useRef(new Vertical(windowHeight)).current;

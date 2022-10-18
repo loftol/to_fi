@@ -16,8 +16,8 @@ class Vertical {
   public openDegree: number;
 
   constructor(windowHeight: number) {
-    this.unitHeight = windowHeight;
-    this.openDegreeHeight = [0, windowHeight * 0.4, windowHeight * 0.8];
+    this.unitHeight = -windowHeight;
+    this.openDegreeHeight = [0, -windowHeight * 0.4, -windowHeight * 0.8];
     this.openDegree = 0;
   }
 

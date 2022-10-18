@@ -14,6 +14,7 @@ const styles = StyleSheet.create({
     top: 50,
   },
   menuContainer: {
+    zIndex: 6,
     position: 'absolute',
     // left: 0,
     top: 0,
