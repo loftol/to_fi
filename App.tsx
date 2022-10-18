@@ -70,8 +70,9 @@ function FlexWrapper() {
 
   return (
     <View style={[styles.flexWrapper]} onTouchStart={touchStartHandler}>
-      <MapBoardContainer />
       <ToiletInfoContainer />
+      <MapBoardContainer />
+      <SearchBar />
       <View style={styles.tmpButton}>
         <RoundButton title="+" onPressHandler={plusPressHandler} />
         <RoundButton title="-" onPressHandler={minusPressHandler} />

@@ -19,7 +19,10 @@ const styles = StyleSheet.create({
   showMoreReviewButton: {
     borderRadius: 10,
     marginTop: 10,
-    backgroundColor: 'white',
+    backgroundColor: '#000',
+  },
+  buttonStyle: {
+    color: '#000',
   },
 });
 
@@ -53,7 +56,11 @@ export default function ToiletReviewList(props: PropTypes) {
         </View>
         {showReview}
         <View style={styles.showMoreReviewButton}>
-          <Button title="리뷰 더 보기" onPress={buttonPressHandler} />
+          <Button
+            color="#333"
+            title="리뷰 더 보기"
+            onPress={buttonPressHandler}
+          />
         </View>
       </View>
       <ReviewInput />

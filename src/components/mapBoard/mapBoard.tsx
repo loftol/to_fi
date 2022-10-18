@@ -3,7 +3,6 @@ import {View} from 'react-native';
 import {WebView} from 'react-native-webview';
 import {useDispatch} from 'react-redux';
 import localInfo from '../../../localInfo';
-
 import {addData} from '../../common/toiletDataReducer';
 
 export default function mapBoard() {

@@ -1,5 +1,3 @@
-const { Animated } = require("react-native");
-
 module.exports = {
   env: {
     es2021: true,

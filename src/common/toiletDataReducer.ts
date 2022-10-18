@@ -24,7 +24,6 @@ interface stateType {
 const addData = createAsyncThunk(
   'toiletData/addData',
   async (toiletId: number, thunkAPI) => {
-    console.log(`${localInfo.hostIp}/info/${toiletId}`);
     const newData = await axios
       .get(`${localInfo.hostIp}/info/${toiletId}`)
       .then(fileData => JSON.parse(fileData.data))
