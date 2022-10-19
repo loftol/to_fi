@@ -48,11 +48,11 @@ const dataSlice = createSlice({
   extraReducers: builder => {
     builder.addCase(addData.fulfilled, (state, action) => {
       const newToilet = {
-        id: action.payload.id,
-        name: action.payload['화장실명'],
-        address: action.payload['소재지도로명주소']
-          ? action.payload['소재지도로명주소']
-          : action.payload['소재지지번주소'],
+        id: action.payload['0'].id,
+        name: action.payload['0'].name,
+        address: action.payload['0'].road_address
+          ? action.payload['0'].road_address
+          : action.payload['0'].parcel_address,
         review: [],
       };
       state.datas.unshift(newToilet);

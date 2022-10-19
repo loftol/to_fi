@@ -6,9 +6,11 @@ import {
   Keyboard,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Entypo';
-import React from 'react';
+import React, {useState} from 'react';
 import {useDispatch} from 'react-redux';
-import {open} from '../../common/isMenuOpenReducer';
+import {open, close} from '../../common/isMenuOpenReducer';
+import {closeInfo} from '../../common/infoOpened';
+import {sendValue} from '../../common/searchValue';
 
 const styles = StyleSheet.create({
   SearchBarStyle: {
@@ -54,6 +56,7 @@ const styles = StyleSheet.create({
 
 export default function SearchBar() {
   const dispatch = useDispatch();
+  const [textInputValue, setTextInputValue] = useState('');
   return (
     <View style={styles.SearchBarStyle}>
       <View style={styles.IconContainerStyle}>
@@ -67,7 +70,20 @@ export default function SearchBar() {
         </TouchableOpacity>
       </View>
       <View style={styles.inputContainer}>
-        <TextInput style={styles.textInput} placeholder="장소 검색" />
+        <TextInput
+          style={styles.textInput}
+          placeholder="장소 검색"
+          value={textInputValue}
+          onSubmitEditing={() => {
+            dispatch(sendValue(textInputValue));
+            setTextInputValue('');
+          }}
+          onChangeText={value => setTextInputValue(value)}
+          onPressIn={() => {
+            dispatch(closeInfo(''));
+            dispatch(close());
+          }}
+        />
       </View>
     </View>
   );
