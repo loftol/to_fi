@@ -18,7 +18,7 @@ export default function mapBoard() {
 
   const handleOnMessage = ({nativeEvent: {data}}) => {
     const {id} = JSON.parse(data);
-    if (id > 0) dispatch(addData(+id));
+    if (id > 0) dispatch(addData(id));
   };
 
   const webViewRef = useRef<WebView>(null);

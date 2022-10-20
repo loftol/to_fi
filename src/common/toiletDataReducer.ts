@@ -5,13 +5,13 @@ import axios from 'axios';
 import localInfo from '../../localInfo';
 
 interface ReviewData {
-  id: number;
+  id: string;
   name: string;
   main: string;
 }
 
 interface ToiletData {
-  id: number;
+  id: string;
   name: string;
   address: string;
   review: Array<ReviewData>;
@@ -23,11 +23,14 @@ interface stateType {
 
 const addData = createAsyncThunk(
   'toiletData/addData',
-  async (toiletId: number, thunkAPI) => {
+  async (toiletId: string, thunkAPI) => {
     const newData = await axios
       .get(`${localInfo.hostIp}/info/${toiletId}`)
       .then(fileData => JSON.parse(fileData.data))
-      .catch(err => console.log(err));
+      .catch(err => {
+        console.log(err);
+        throw err;
+      });
     return {...newData, id: toiletId};
   },
 );
@@ -47,6 +50,7 @@ const dataSlice = createSlice({
   },
   extraReducers: builder => {
     builder.addCase(addData.fulfilled, (state, action) => {
+      console.log(action.payload);
       const newToilet = {
         id: action.payload['0'].id,
         name: action.payload['0'].name,
