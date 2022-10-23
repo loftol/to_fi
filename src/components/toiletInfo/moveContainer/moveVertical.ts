@@ -1,6 +1,6 @@
 import {useRef} from 'react';
 
-import {Animated} from 'react-native';
+import {Animated, Keyboard} from 'react-native';
 
 import {useDispatch} from 'react-redux';
 
@@ -74,6 +74,7 @@ class Vertical {
       (!infoOpened && this.openDegree === 2) ||
       (menuOpened && this.openDegree !== 0)
     ) {
+      Keyboard.dismiss();
       this.openDegree = 0;
       Animated.spring(this.pan, {
         toValue: this.openDegreeHeight[0],

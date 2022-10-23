@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, View, Keyboard} from 'react-native';
 import {Provider, useDispatch, useSelector} from 'react-redux';
 
 import store, {RootState} from './src/common/store';
@@ -72,7 +72,6 @@ function FlexWrapper() {
     <View style={[styles.flexWrapper]} onTouchStart={touchStartHandler}>
       <ToiletInfoContainer />
       <MapBoardContainer />
-      <SearchBar />
       <View style={styles.tmpButton}>
         <RoundButton title="+" onPressHandler={plusPressHandler} />
         <RoundButton title="-" onPressHandler={minusPressHandler} />

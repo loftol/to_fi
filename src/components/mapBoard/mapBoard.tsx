@@ -4,7 +4,7 @@ import {WebView} from 'react-native-webview';
 import {useDispatch, useSelector} from 'react-redux';
 import localInfo from '../../../localInfo';
 import {addData} from '../../common/toiletDataReducer';
-import {sendValue} from '../../common/searchValue';
+import {sendValue} from '../../common/searchReducer';
 import {RootState} from '../../common/store';
 
 export default function mapBoard() {

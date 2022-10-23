@@ -12,7 +12,7 @@ const initialState: stateType = {
   searching: false,
 };
 
-const infoSlice = createSlice({
+const searchSlice = createSlice({
   name: 'searchValue',
   initialState,
   reducers: {
@@ -24,5 +24,5 @@ const infoSlice = createSlice({
   },
 });
 
-export const {sendValue} = infoSlice.actions;
-export default infoSlice.reducer;
+export const {sendValue} = searchSlice.actions;
+export default searchSlice.reducer;

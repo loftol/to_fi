@@ -10,7 +10,7 @@ import React, {useState} from 'react';
 import {useDispatch} from 'react-redux';
 import {open, close} from '../../common/isMenuOpenReducer';
 import {closeInfo} from '../../common/infoOpened';
-import {sendValue} from '../../common/searchValue';
+import {sendValue} from '../../common/searchReducer';
 
 const styles = StyleSheet.create({
   SearchBarStyle: {
@@ -83,6 +83,7 @@ export default function SearchBar() {
             dispatch(closeInfo(''));
             dispatch(close());
           }}
+          // onBlur={() => Keyboard.dismiss()}
         />
       </View>
     </View>

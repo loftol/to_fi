@@ -36,7 +36,14 @@ const addData = createAsyncThunk(
 );
 
 const initialState: stateType = {
-  datas: [],
+  datas: [
+    {
+      id: '0',
+      name: 'test-name',
+      address: 'test-address',
+      review: [{id: '1', name: 'test-name', main: 'test-review'}],
+    },
+  ],
 };
 
 const dataSlice = createSlice({

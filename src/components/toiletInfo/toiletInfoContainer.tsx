@@ -1,6 +1,12 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, {useRef} from 'react';
-import {StyleSheet, Animated, PanResponder, Dimensions} from 'react-native';
+import {
+  StyleSheet,
+  Animated,
+  PanResponder,
+  Dimensions,
+  Keyboard,
+} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 
 import ToiletInfoList from './ToiletInfoList';
@@ -53,9 +59,10 @@ export default function ToiletInfoContainer() {
 
   const panResponder = useRef(
     PanResponder.create({
-      onMoveShouldSetPanResponder: () => true,
+      onStartShouldSetPanResponder: () => true,
       onPanResponderGrant: () => {
         direction = 'none';
+        Keyboard.dismiss();
       },
       onPanResponderMove: (event, gestureState) => {
         if (direction === 'none')

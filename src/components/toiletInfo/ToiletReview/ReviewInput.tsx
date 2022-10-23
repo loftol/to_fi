@@ -1,5 +1,6 @@
 import React from 'react';
-import {View, Text, TextInput, StyleSheet} from 'react-native';
+import {View, Text, TextInput, StyleSheet, Keyboard} from 'react-native';
+import axios from 'axios';
 
 const styles = StyleSheet.create({
   reviewInputContainer: {
@@ -18,8 +19,15 @@ const styles = StyleSheet.create({
 export default function ReviewInput() {
   return (
     <View style={styles.reviewInputContainer}>
-      <Text style={{fontWeight: 'bold'}}>리뷰 쓰기</Text>
-      <TextInput style={styles.inputBox} placeholder="리뷰를 입력해주세요" />
+      <Text style={{fontWeight: 'bold'}}>리뷰 작성</Text>
+      <TextInput
+        style={styles.inputBox}
+        placeholder="리뷰를 입력해주세요"
+        returnKeyType="send"
+        onBlur={() => {
+          Keyboard.dismiss();
+        }}
+      />
     </View>
   );
 }
