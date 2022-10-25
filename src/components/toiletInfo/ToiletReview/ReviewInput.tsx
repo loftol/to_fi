@@ -20,9 +20,15 @@ const styles = StyleSheet.create({
 export default function ReviewInput() {
   const textInputRef = useRef<TextInput>(null);
   const onSubmitHandler = ({nativeEvent}) => {
-    axios.post(`${localInfo.hostIp}/review/1`, {
-      main: nativeEvent.text,
-    });
+    axios
+      .post(`${localInfo.hostIp}/review/1`, {
+        main: nativeEvent.text,
+      })
+      .then(result => {
+        if (result.status === 201) return console.log('success');
+        throw new Error('error');
+      })
+      .catch(() => console.log('failed'));
   };
   return (
     <View style={styles.reviewInputContainer}>
