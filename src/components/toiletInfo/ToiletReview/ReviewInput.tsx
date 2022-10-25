@@ -1,6 +1,7 @@
 import React, {useRef} from 'react';
 import {View, Text, TextInput, StyleSheet, Keyboard} from 'react-native';
 import axios from 'axios';
+import localInfo from '../../../../localInfo';
 
 const styles = StyleSheet.create({
   reviewInputContainer: {
@@ -19,7 +20,9 @@ const styles = StyleSheet.create({
 export default function ReviewInput() {
   const textInputRef = useRef<TextInput>(null);
   const onSubmitHandler = ({nativeEvent}) => {
-    axios.post();
+    axios.post(`${localInfo.hostIp}/review/1`, {
+      main: nativeEvent.text,
+    });
   };
   return (
     <View style={styles.reviewInputContainer}>
