@@ -26,7 +26,7 @@ export default function MapBoardContainer() {
     if (infoOpened) dispatch(closeInfo(''));
   };
   return (
-    <View style={[styles.mapBoard]} onTouchEnd={touchEndHandler}>
+    <View style={[styles.mapBoard]} onTouchStart={touchEndHandler}>
       <MapBoard />
     </View>
   );
