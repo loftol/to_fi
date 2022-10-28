@@ -2,7 +2,6 @@ import {View, StyleSheet, TextInput} from 'react-native';
 import Icon from 'react-native-vector-icons/Entypo';
 import React, {useState} from 'react';
 import {useDispatch} from 'react-redux';
-import {close} from '../../common/isMenuOpenReducer';
 import {closeInfo} from '../../common/infoOpened';
 import {sendValue} from '../../common/searchReducer';
 import RoundButton from '../UI/RoundButton';
@@ -63,7 +62,6 @@ export default function MenuBar() {
           onChangeText={value => setTextInputValue(value)}
           onPressIn={() => {
             dispatch(closeInfo(''));
-            dispatch(close());
           }}
         />
       </View>

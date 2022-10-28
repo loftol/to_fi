@@ -1,13 +1,11 @@
 import React from 'react';
 import {Dimensions, StyleSheet, View} from 'react-native';
-import {Provider, useDispatch, useSelector} from 'react-redux';
+import {Provider} from 'react-redux';
 
-import store, {RootState} from './src/common/store';
-import {close} from './src/common/isMenuOpenReducer';
+import store from './src/common/store';
 
 import {
   MapBoardContainer,
-  MenuContainer,
   MenuBar,
   ToiletInfoContainer,
   ReviewPage,
@@ -39,33 +37,20 @@ const styles = StyleSheet.create({
 const windowHeight = Dimensions.get('window').height;
 
 function FlexWrapper() {
-  const dispatch = useDispatch();
-
-  const menuOpened = useSelector(
-    (state: RootState) => state.isMenuOpen.isMenuOpen,
-  );
-
-  const touchStartHandler = () => {
-    if (menuOpened) dispatch(close());
-  };
-
   return (
-    <View style={[styles.flexWrapper]} onTouchStart={touchStartHandler}>
+    <View style={[styles.flexWrapper]}>
       <ToiletInfoContainer />
       <MapBoardContainer />
     </View>
   );
 }
 
-interface Props {}
-console.log(windowHeight);
-const App = ({}: Props) => (
+const App = ({}) => (
   <Provider store={store}>
     <View style={styles.backgroundStyle}>
       <GrowingCircle from={1} to={windowHeight * 2.5} pos={{x: 1, y: 1}} />
       <MenuBar />
       <FlexWrapper />
-      <MenuContainer />
       <ReviewPage />
     </View>
   </Provider>

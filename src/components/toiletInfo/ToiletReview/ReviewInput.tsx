@@ -1,5 +1,5 @@
 import React, {useRef} from 'react';
-import {View, Text, TextInput, StyleSheet, Keyboard} from 'react-native';
+import {View, Text, TextInput, StyleSheet} from 'react-native';
 import axios from 'axios';
 import localInfo from '../../../../localInfo';
 

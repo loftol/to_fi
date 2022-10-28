@@ -43,7 +43,6 @@ export default function ToiletInfoContainer() {
 
   const [infoOpened, menuOpened] = useSelector((state: RootState) => [
     state.infoOpened.infoOpened,
-    state.isMenuOpen.isMenuOpen,
   ]);
 
   const numberOfData = useSelector(

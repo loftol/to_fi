@@ -1,12 +1,10 @@
 import {combineReducers, configureStore} from '@reduxjs/toolkit';
-import {isMenuOpenReducer} from './isMenuOpenReducer';
 import {isReviewOpenReducer} from './isReviewOpenReducer';
 import infoOpenedReducer from './infoOpened';
 import toiletDataReducer from './toiletDataReducer';
 import searchValueReducer from './searchReducer';
 
 const rootReducer = combineReducers({
-  isMenuOpen: isMenuOpenReducer,
   isReviewOpen: isReviewOpenReducer,
   infoOpened: infoOpenedReducer,
   toiletData: toiletDataReducer,
