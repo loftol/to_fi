@@ -1,37 +1,52 @@
 import React from 'react';
-import {Text, StyleSheet, Pressable, GestureResponderEvent} from 'react-native';
+import {Text, StyleSheet, Pressable} from 'react-native';
+import PropTypes from 'prop-types';
 
 const styles = StyleSheet.create({
   button: {
+    elevation: 5,
+    zIndex: 3,
     alignItems: 'center',
     justifyContent: 'center',
-    width: 50,
-    height: 50,
-    borderRadius: 25,
-    borderColor: '#63c9856c',
-    borderWidth: 1,
-    marginTop: 5,
+    height: '80%',
+    aspectRatio: 1,
+    borderRadius: 50,
+    marginLeft: '3%',
+    marginRight: '3%',
   },
   text: {
     color: 'white',
   },
 });
 
-type PropType = {
-  title: string;
-  // eslint-disable-next-line react/require-default-props, no-unused-vars
-  onPressHandler?: (event: GestureResponderEvent) => void;
-};
-
-export default function RoundButton({onPressHandler, title}: PropType) {
+export default function RoundButton({
+  onPressInHandler,
+  onPressOutHandler,
+  onPressHandler,
+  children,
+}) {
   return (
     <Pressable
       style={({pressed}) => [
         styles.button,
-        {backgroundColor: pressed ? '#474a87' : '#777cdd'},
+        {backgroundColor: pressed ? '#3f94e9' : '#ffffff'},
       ]}
+      onPressIn={onPressInHandler}
+      onPressOut={onPressOutHandler}
       onPress={onPressHandler}>
-      <Text style={styles.text}>{title}</Text>
+      <Text style={styles.text}>{children}</Text>
     </Pressable>
   );
 }
+
+RoundButton.propTypes = {
+  onPressHandler: PropTypes.func,
+  onPressInHandler: PropTypes.func,
+  onPressOutHandler: PropTypes.func,
+};
+
+RoundButton.defaultProps = {
+  onPressHandler: () => {},
+  onPressInHandler: () => {},
+  onPressOutHandler: () => {},
+};

@@ -1,50 +1,32 @@
-import {
-  View,
-  StyleSheet,
-  TextInput,
-  TouchableOpacity,
-  Keyboard,
-} from 'react-native';
+import {View, StyleSheet, TextInput} from 'react-native';
 import Icon from 'react-native-vector-icons/Entypo';
 import React, {useState} from 'react';
 import {useDispatch} from 'react-redux';
-import {open, close} from '../../common/isMenuOpenReducer';
+import {close} from '../../common/isMenuOpenReducer';
 import {closeInfo} from '../../common/infoOpened';
 import {sendValue} from '../../common/searchReducer';
+import RoundButton from '../UI/RoundButton';
 
 const styles = StyleSheet.create({
   SearchBarStyle: {
-    zIndex: 1,
+    zIndex: 3,
     position: 'absolute',
     flexDirection: 'row',
     left: '10%',
     top: 20,
-    paddingTop: 5,
-    paddingBottom: 5,
+    alignItems: 'center',
     backgroundColor: '#fff',
     width: '80%',
-    height: 50,
-    borderRadius: 20,
+    height: 55,
+    borderRadius: 100,
     borderWidth: 1,
     borderColor: '#e5e5e5',
   },
-  IconContainerStyle: {
-    width: '15%',
-    height: '100%',
-    borderRightColor: '#3f94e9',
-    borderRightWidth: 1,
-  },
-  IconWrapperStyle: {
-    width: '100%',
-    height: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
   inputContainer: {
-    marginLeft: 10,
-    marginRight: 5,
+    marginLeft: '1%',
+    marginRight: '1%',
     height: '100%',
-    width: '80%',
+    width: '75%',
   },
   textInput: {
     margin: 0,
@@ -54,21 +36,21 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function SearchBar() {
+export default function MenuBar() {
   const dispatch = useDispatch();
   const [textInputValue, setTextInputValue] = useState('');
+  const [pressed, setPressed] = useState(false);
   return (
     <View style={styles.SearchBarStyle}>
-      <View style={styles.IconContainerStyle}>
-        <TouchableOpacity
-          style={styles.IconWrapperStyle}
-          onPress={() => {
-            dispatch(open());
-            Keyboard.dismiss();
-          }}>
-          <Icon name="menu" size={30} color="#3f94e9" />
-        </TouchableOpacity>
-      </View>
+      <RoundButton
+        onPressInHandler={() => {
+          setPressed(true);
+        }}
+        onPressOutHandler={() => {
+          setPressed(false);
+        }}>
+        <Icon name="menu" size={30} color={pressed ? '#fff' : '#3f94e9'} />
+      </RoundButton>
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.textInput}
@@ -83,7 +65,6 @@ export default function SearchBar() {
             dispatch(closeInfo(''));
             dispatch(close());
           }}
-          // onBlur={() => Keyboard.dismiss()}
         />
       </View>
     </View>
