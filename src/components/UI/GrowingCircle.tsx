@@ -1,6 +1,17 @@
 import React, {useRef} from 'react';
 import {Animated, StyleSheet} from 'react-native';
 
+interface propType {
+  from: number;
+  to: number;
+  pos: {
+    x: number;
+    y: number;
+  };
+  // eslint-disable-next-line react/require-default-props
+  callBack?: Function;
+}
+
 const styles = StyleSheet.create({
   growingCircle: {
     backgroundColor: '#3f94e9',
@@ -9,14 +20,14 @@ const styles = StyleSheet.create({
   },
 });
 
-const GrowingCircle = ({from, to, pos}: propType) => {
+const GrowingCircle = ({from, to, pos, callBack}: propType) => {
   const anim = useRef(new Animated.Value(from)).current;
 
   Animated.spring(anim, {
     toValue: to,
     tension: 5,
     useNativeDriver: false,
-  }).start();
+  }).start(callBack ? callBack() : '');
 
   return (
     <Animated.View
@@ -33,14 +44,5 @@ const GrowingCircle = ({from, to, pos}: propType) => {
     />
   );
 };
-
-interface propType {
-  from: number;
-  to: number;
-  pos: {
-    x: number;
-    y: number;
-  };
-}
 
 export default GrowingCircle;
