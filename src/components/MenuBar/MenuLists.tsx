@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {View, StyleSheet} from 'react-native';
+import React, {useState, useRef} from 'react';
+import {View, StyleSheet, Animated} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 
 import Icon from 'react-native-vector-icons/Entypo';
@@ -10,12 +10,19 @@ import {RootState} from '../../common/store';
 import {hideMenuList, closeMenu} from '../../common/menuReducer';
 
 const styles = StyleSheet.create({
-  buttonContainer: {
+  menuListsContainer: {
     width: '100%',
     height: '100%',
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+  },
+  buttonContainer: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginRight: '2%',
+    marginLeft: '2%',
   },
 });
 
@@ -24,60 +31,59 @@ const MenuLists = () => {
   const openedMenuId = useSelector(
     (state: RootState) => state.menu.openedMenu.id,
   );
-  const [pressed, setPressed] = useState(-1);
 
-  const pressHandler = (id: number) => {
-    setPressed(id);
-  };
+  const [pressed, setPressed] = useState(false);
+
+  const anim = useRef(new Animated.Value(0)).current;
+
+  Animated.spring(anim, {
+    toValue: 55,
+    useNativeDriver: false,
+  }).start();
 
   return (
-    <View style={styles.buttonContainer}>
+    <View style={styles.menuListsContainer}>
       <RoundButton
         onPressInHandler={() => {
-          setPressed(0);
+          setPressed(true);
         }}
         onPressHandler={() => {
-          setPressed(-1);
+          setPressed(false);
           dispatch(closeMenu());
           dispatch(hideMenuList());
         }}>
-        <Icon
-          name="menu"
-          size={30}
-          color={pressed === 0 ? '#fff' : '#3f94e9'}
-        />
+        <Icon name="menu" size={30} color={pressed ? '#fff' : '#3f94e9'} />
       </RoundButton>
-
-      <MenuButton
-        id={1}
-        openedMenuId={openedMenuId}
-        pressHandler={pressHandler}>
-        <Icon
-          name="menu"
-          size={30}
-          color={pressed === 1 ? '#fff' : '#3f94e9'}
-        />
-      </MenuButton>
-      <MenuButton
-        id={2}
-        openedMenuId={openedMenuId}
-        pressHandler={pressHandler}>
-        <Icon
-          name="menu"
-          size={30}
-          color={pressed === 2 ? '#fff' : '#3f94e9'}
-        />
-      </MenuButton>
-      <MenuButton
-        id={3}
-        openedMenuId={openedMenuId}
-        pressHandler={pressHandler}>
-        <Icon
-          name="menu"
-          size={30}
-          color={pressed === 3 ? '#fff' : '#3f94e9'}
-        />
-      </MenuButton>
+      <Animated.View
+        style={[
+          {
+            width: anim,
+            height: anim,
+          },
+          styles.buttonContainer,
+        ]}>
+        <MenuButton id={1} openedMenuId={openedMenuId} iconName="menu" />
+      </Animated.View>
+      <Animated.View
+        style={[
+          {
+            width: anim,
+            height: anim,
+          },
+          styles.buttonContainer,
+        ]}>
+        <MenuButton id={2} openedMenuId={openedMenuId} iconName="menu" />
+      </Animated.View>
+      <Animated.View
+        style={[
+          {
+            width: anim,
+            height: anim,
+          },
+          styles.buttonContainer,
+        ]}>
+        <MenuButton id={3} openedMenuId={openedMenuId} iconName="menu" />
+      </Animated.View>
     </View>
   );
 };

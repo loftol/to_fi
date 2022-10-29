@@ -1,5 +1,5 @@
 import React from 'react';
-import {Dimensions, StyleSheet, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {Provider} from 'react-redux';
 
 import store from './src/common/store';
@@ -33,8 +33,6 @@ const styles = StyleSheet.create({
     top: '10%',
   },
 });
-
-const windowHeight = Dimensions.get('window').height;
 
 function FlexWrapper() {
   return (

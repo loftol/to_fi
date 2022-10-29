@@ -11,6 +11,8 @@ interface propType {
   color: string;
   // eslint-disable-next-line react/require-default-props
   callBack?: Function;
+  // eslint-disable-next-line react/require-default-props
+  style?: any;
 }
 
 const styles = StyleSheet.create({
@@ -21,7 +23,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const GrowingCircle = ({from, to, pos, color, callBack}: propType) => {
+const GrowingCircle = ({from, to, pos, color, callBack, style}: propType) => {
   const anim = useRef(new Animated.Value(0)).current;
   anim.setValue(from);
 
@@ -43,6 +45,7 @@ const GrowingCircle = ({from, to, pos, color, callBack}: propType) => {
           aspectRatio: 1,
           borderRadius: Animated.divide(anim, 2),
         },
+        style,
       ]}
     />
   );
