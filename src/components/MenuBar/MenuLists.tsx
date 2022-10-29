@@ -54,36 +54,60 @@ const MenuLists = () => {
         }}>
         <Icon name="menu" size={30} color={pressed ? '#fff' : '#3f94e9'} />
       </RoundButton>
-      <Animated.View
-        style={[
-          {
-            width: anim,
-            height: anim,
-          },
-          styles.buttonContainer,
-        ]}>
-        <MenuButton id={1} openedMenuId={openedMenuId} iconName="menu" />
-      </Animated.View>
-      <Animated.View
-        style={[
-          {
-            width: anim,
-            height: anim,
-          },
-          styles.buttonContainer,
-        ]}>
-        <MenuButton id={2} openedMenuId={openedMenuId} iconName="menu" />
-      </Animated.View>
-      <Animated.View
-        style={[
-          {
-            width: anim,
-            height: anim,
-          },
-          styles.buttonContainer,
-        ]}>
-        <MenuButton id={3} openedMenuId={openedMenuId} iconName="menu" />
-      </Animated.View>
+      <View
+        style={{
+          justifyContent: 'center',
+          alignItems: 'center',
+          height: '100%',
+          aspectRatio: 1,
+        }}>
+        <Animated.View
+          style={[
+            {
+              width: anim,
+              height: anim,
+            },
+            styles.buttonContainer,
+          ]}>
+          <MenuButton id={1} openedMenuId={openedMenuId} iconName="menu" />
+        </Animated.View>
+      </View>
+      <View
+        style={{
+          justifyContent: 'center',
+          alignItems: 'center',
+          height: '100%',
+          aspectRatio: 1,
+        }}>
+        <Animated.View
+          style={[
+            {
+              width: anim,
+              height: anim,
+            },
+            styles.buttonContainer,
+          ]}>
+          <MenuButton id={2} openedMenuId={openedMenuId} iconName="menu" />
+        </Animated.View>
+      </View>
+      <View
+        style={{
+          justifyContent: 'center',
+          alignItems: 'center',
+          height: '100%',
+          aspectRatio: 1,
+        }}>
+        <Animated.View
+          style={[
+            {
+              width: anim,
+              height: anim,
+            },
+            styles.buttonContainer,
+          ]}>
+          <MenuButton id={3} openedMenuId={openedMenuId} iconName="menu" />
+        </Animated.View>
+      </View>
     </View>
   );
 };
