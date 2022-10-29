@@ -10,7 +10,7 @@ import {
   ToiletInfoContainer,
   ReviewPage,
 } from './src/components/mainComponents';
-import GrowingCircle from './src/components/UI/GrowingCircle';
+import MenuContainer from './src/components/menu/MenuContainer';
 
 const styles = StyleSheet.create({
   backgroundStyle: {
@@ -48,7 +48,7 @@ function FlexWrapper() {
 const App = ({}) => (
   <Provider store={store}>
     <View style={styles.backgroundStyle}>
-      <GrowingCircle from={1} to={windowHeight * 2.5} pos={{x: 1, y: 1}} />
+      <MenuContainer />
       <MenuBar />
       <FlexWrapper />
       <ReviewPage />

@@ -1,10 +1,11 @@
-import {View, StyleSheet, TextInput} from 'react-native';
-import Icon from 'react-native-vector-icons/Entypo';
 import React, {useState} from 'react';
+import {View, StyleSheet, TextInput} from 'react-native';
 import {useDispatch} from 'react-redux';
+
+import MenuLists from './MenuLists';
+
 import {closeInfo} from '../../common/infoOpened';
 import {sendValue} from '../../common/searchReducer';
-import RoundButton from '../UI/RoundButton';
 
 const styles = StyleSheet.create({
   SearchBarStyle: {
@@ -37,19 +38,12 @@ const styles = StyleSheet.create({
 
 export default function MenuBar() {
   const dispatch = useDispatch();
+
   const [textInputValue, setTextInputValue] = useState('');
-  const [pressed, setPressed] = useState(false);
+
   return (
     <View style={styles.SearchBarStyle}>
-      <RoundButton
-        onPressInHandler={() => {
-          setPressed(true);
-        }}
-        onPressOutHandler={() => {
-          setPressed(false);
-        }}>
-        <Icon name="menu" size={30} color={pressed ? '#fff' : '#3f94e9'} />
-      </RoundButton>
+      <MenuLists />
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.textInput}
