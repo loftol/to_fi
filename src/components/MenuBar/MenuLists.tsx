@@ -1,31 +1,45 @@
 import React, {useState} from 'react';
 import {View, StyleSheet} from 'react-native';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 
 import Icon from 'react-native-vector-icons/Entypo';
 import MenuButton from './MenuButton';
 import RoundButton from '../UI/RoundButton';
 
 import {RootState} from '../../common/store';
+import {hideMenuList} from '../../common/menuReducer';
 
 const styles = StyleSheet.create({
   buttonContainer: {
+    width: '100%',
+    height: '100%',
     flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
 });
 
 const MenuLists = () => {
+  const dispatch = useDispatch();
   const openedMenuId = useSelector(
     (state: RootState) => state.menu.openedMenu.id,
   );
   const [pressed, setPressed] = useState(-1);
+
   const pressHandler = (id: number) => {
     setPressed(id);
   };
 
   return (
     <View style={styles.buttonContainer}>
-      <RoundButton>
+      <RoundButton
+        onPressInHandler={() => {
+          setPressed(0);
+        }}
+        onPressHandler={() => {
+          setPressed(-1);
+          dispatch(hideMenuList());
+        }}>
         <Icon
           name="menu"
           size={30}

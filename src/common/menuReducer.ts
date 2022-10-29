@@ -12,13 +12,13 @@ interface menuType {
 }
 
 interface stateType {
-  isMenuOpen: boolean;
+  isMenuShown: boolean;
   openedMenu: menuType;
   closed: boolean;
 }
 
 const initialState: stateType = {
-  isMenuOpen: false,
+  isMenuShown: false,
   openedMenu: {
     id: -1,
     pos: {
@@ -33,6 +33,12 @@ const menuSlice = createSlice({
   name: 'menu',
   initialState,
   reducers: {
+    showMenuList(state) {
+      state.isMenuShown = true;
+    },
+    hideMenuList(state) {
+      state.isMenuShown = false;
+    },
     changeMenu(state, action) {
       state.openedMenu.id = +action.payload.id;
       state.openedMenu.pos = {x: action.payload.pos.x, y: action.payload.pos.y};
@@ -44,5 +50,6 @@ const menuSlice = createSlice({
   },
 });
 
-export const {changeMenu, closeMenu} = menuSlice.actions;
+export const {changeMenu, closeMenu, showMenuList, hideMenuList} =
+  menuSlice.actions;
 export default menuSlice.reducer;
