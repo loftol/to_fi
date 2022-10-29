@@ -7,7 +7,7 @@ import MenuButton from './MenuButton';
 import RoundButton from '../UI/RoundButton';
 
 import {RootState} from '../../common/store';
-import {hideMenuList} from '../../common/menuReducer';
+import {hideMenuList, closeMenu} from '../../common/menuReducer';
 
 const styles = StyleSheet.create({
   buttonContainer: {
@@ -38,6 +38,7 @@ const MenuLists = () => {
         }}
         onPressHandler={() => {
           setPressed(-1);
+          dispatch(closeMenu());
           dispatch(hideMenuList());
         }}>
         <Icon
