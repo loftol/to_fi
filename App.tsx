@@ -11,6 +11,7 @@ import {
   ReviewPage,
 } from './src/components/mainComponents';
 import MenuContainer from './src/components/menu/MenuContainer';
+import ContentContainer from './src/components/menu/ContentContainer';
 
 const styles = StyleSheet.create({
   backgroundStyle: {
@@ -46,6 +47,7 @@ function FlexWrapper() {
 const App = ({}) => (
   <Provider store={store}>
     <View style={styles.backgroundStyle}>
+      <ContentContainer />
       <MenuContainer />
       <MenuBar />
       <FlexWrapper />
