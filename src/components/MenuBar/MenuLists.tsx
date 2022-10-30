@@ -5,6 +5,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import Icon from 'react-native-vector-icons/Entypo';
 import MenuButton from './MenuButton';
 import RoundButton from '../UI/RoundButton';
+import {change} from '../../common/showStateReducer';
 
 import {RootState} from '../../common/store';
 import {hideMenuList, closeMenu} from '../../common/menuReducer';
@@ -44,6 +45,7 @@ const MenuLists = () => {
   function makeMenuButton({key, iconName}) {
     return (
       <View
+        key={key}
         style={{
           justifyContent: 'center',
           alignItems: 'center',
@@ -84,6 +86,7 @@ const MenuLists = () => {
         }}
         onPressHandler={() => {
           setPressed(false);
+          dispatch(change(0));
           dispatch(closeMenu());
           dispatch(hideMenuList());
         }}>

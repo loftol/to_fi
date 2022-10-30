@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 
 import Icon from 'react-native-vector-icons/Entypo';
+import {change} from '../../common/showStateReducer';
 import RoundButton from '../UI/RoundButton';
 
 import {RootState} from '../../common/store';
@@ -15,14 +16,18 @@ const MenuButton = ({id, iconName, openedMenuId}) => {
     <RoundButton
       onPressInHandler={({nativeEvent}) => {
         setPressed(true);
-        if (openedMenuId === id && !closed) dispatch(closeMenu());
-        else
+        if (openedMenuId === id && !closed) {
+          dispatch(change(0));
+          dispatch(closeMenu());
+        } else {
           dispatch(
             changeMenu({
               id,
               pos: {x: nativeEvent.pageX, y: nativeEvent.pageY},
             }),
           );
+          dispatch(change(id));
+        }
       }}
       onPressOutHandler={() => {
         setPressed(false);
