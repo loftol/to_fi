@@ -15,8 +15,7 @@ const styles = StyleSheet.create({
     height: '100%',
     width: '100%',
     backgroundColor: '#1cd883',
-    zIndex: 9,
-    elevation: 9,
+    zIndex: 4,
   },
 });
 
@@ -33,17 +32,18 @@ export default function ReviewPage() {
     Animated.timing(moveAnim, {
       toValue: 0,
       duration: 300,
-      useNativeDriver: true,
+      useNativeDriver: false,
     }).start();
   };
   const moveRight = () => {
     Animated.timing(moveAnim, {
       toValue: windowWidth,
       duration: 300,
-      useNativeDriver: true,
+      useNativeDriver: false,
     }).start();
   };
 
+  console.log(isReviewOpen, 'moved');
   if (isReviewOpen) moveLeft();
   else moveRight();
 

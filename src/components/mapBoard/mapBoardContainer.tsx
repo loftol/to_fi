@@ -10,9 +10,10 @@ import {closeInfo} from '../../common/infoOpened';
 
 const styles = StyleSheet.create({
   mapBoard: {
-    flex: 1,
+    position: 'absolute',
+    zIndex: 0,
     width: '100%',
-    backgroundColor: '#000',
+    height: '100%',
   },
 });
 

@@ -15,6 +15,7 @@ const styles = StyleSheet.create({
     padding: 5,
     marginTop: 5,
   },
+  submitButton: {},
 });
 
 export default function ReviewInput() {
@@ -39,7 +40,7 @@ export default function ReviewInput() {
         placeholder="리뷰를 입력해주세요"
         returnKeyType="send"
         onSubmitEditing={onSubmitHandler}
-        onBlur={() => textInputRef.current?.clear()}
+        multiline
       />
     </View>
   );

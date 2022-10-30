@@ -57,7 +57,6 @@ const dataSlice = createSlice({
   },
   extraReducers: builder => {
     builder.addCase(addData.fulfilled, (state, action) => {
-      console.log(action.payload);
       const newToilet = {
         id: action.payload['0'].id,
         name: action.payload['0'].name,

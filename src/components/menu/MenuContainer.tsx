@@ -1,5 +1,5 @@
 import React from 'react';
-import {Dimensions} from 'react-native';
+import {Dimensions, View} from 'react-native';
 import {useSelector} from 'react-redux';
 
 import GrowingCircle from '../UI/GrowingCircle';
@@ -29,12 +29,14 @@ const MenuContainer = () => {
   }
 
   return (
-    <GrowingCircle
-      from={from}
-      to={to}
-      pos={{x: openedMenu.pos.x, y: openedMenu.pos.y}}
-      color={menuColorData[openedMenu.id]}
-    />
+    <View style={{position: 'absolute', zIndex: 2}}>
+      <GrowingCircle
+        from={from}
+        to={to}
+        pos={{x: openedMenu.pos.x, y: openedMenu.pos.y}}
+        color={menuColorData[openedMenu.id]}
+      />
+    </View>
   );
 };
 

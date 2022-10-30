@@ -49,6 +49,8 @@ const MenuLists = () => {
           alignItems: 'center',
           height: '100%',
           aspectRatio: 1,
+          marginLeft: '2%',
+          marginRight: '2%',
         }}>
         <Animated.View
           style={[

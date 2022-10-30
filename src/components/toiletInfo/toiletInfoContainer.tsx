@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     left: 0,
     height: '100%',
     flexDirection: 'row',
-    zIndex: 9,
+    zIndex: 1,
   },
 });
 
