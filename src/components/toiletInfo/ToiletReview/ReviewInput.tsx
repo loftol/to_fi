@@ -23,6 +23,8 @@ export default function ReviewInput() {
   const onSubmitHandler = ({nativeEvent}) => {
     axios
       .post(`${localInfo.hostIp}/review/1`, {
+        id: 1,
+        rating: 3,
         main: nativeEvent.text,
       })
       .then(result => {

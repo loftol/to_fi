@@ -1,13 +1,19 @@
 import React from 'react';
-import {View, Text, StyleSheet, Button} from 'react-native';
+import {View, StyleSheet, Button} from 'react-native';
 import {useDispatch} from 'react-redux';
-import {open} from '../../../common/isReviewOpenReducer';
+import {library} from '@fortawesome/fontawesome-svg-core';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import {faCoffee} from '@fortawesome/free-solid-svg-icons';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 import commonStyles from '../../../common/commonStyles';
 import ReviewInput from './ReviewInput';
 import ReviewItem from './ReviewItem';
 
 import {ReviewData} from '../../../common/toiletDataReducer';
+import {open} from '../../../common/isReviewOpenReducer';
+
+library.add(faCoffee);
 
 const styles = StyleSheet.create({
   reviewContainer: {
@@ -52,7 +58,7 @@ export default function ToiletReviewList(props: PropTypes) {
     <>
       <View style={styles.reviewContainer}>
         <View style={commonStyles.bottomBorderBox}>
-          <Text>4.0 점 별별별별별</Text>
+          <Icon name="star" />
         </View>
         {showReview}
         <View style={styles.showMoreReviewButton}>
