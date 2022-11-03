@@ -3,6 +3,7 @@ import {View} from 'react-native';
 import {useSelector} from 'react-redux';
 import SignInContainer from './SignInContainer';
 import {RootState} from '../../common/store';
+import SignUpContainer from './SignUpContainer';
 
 export default function ContentContainer() {
   const showState = useSelector((state: RootState) => state.showState.id);
@@ -13,6 +14,8 @@ export default function ContentContainer() {
         break;
       case 1:
         return <SignInContainer />;
+      case 4:
+        return <SignUpContainer />;
       default:
         break;
     }

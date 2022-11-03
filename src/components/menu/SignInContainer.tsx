@@ -1,6 +1,8 @@
 import React, {useRef} from 'react';
-import {View, StyleSheet, TextInput, Text} from 'react-native';
+import {View, StyleSheet, TextInput, Text, Pressable} from 'react-native';
 import axios from 'axios';
+import {useDispatch} from 'react-redux';
+import {change} from '../../common/showStateReducer';
 import localInfo from '../../../localInfo';
 
 const styles = StyleSheet.create({
@@ -25,29 +27,33 @@ const styles = StyleSheet.create({
 });
 
 export default function SignInContainer() {
+  const dispatch = useDispatch();
   const idInputRef = useRef<TextInput>(null);
   const passInputRef = useRef<TextInput>(null);
+
+  const request = useRef({id: '', password: ''});
 
   const onSubmitHandler = () => {
     if (idInputRef.current === null) throw new Error('ID를 입력하세요.');
     else if (passInputRef.current === null)
       throw new Error('비밀번호를 입력하세요.');
-    axios
-      .post(`${localInfo.hostIp}/signIn`, {
-        id: idInputRef.current,
-        password: passInputRef.current,
-      })
-      .then(result => {
-        if (result.status === 201) return console.log('success');
-        throw new Error('몬가.. 몬가 잘못됐다..');
-      })
-      .catch(e => {
-        throw e;
-      });
+    else
+      axios
+        .post(`${localInfo.hostIp}/signIn`, {
+          id: idInputRef.current,
+          password: passInputRef.current,
+        })
+        .then(result => {
+          if (result.status === 201) return console.log('success');
+          throw new Error('몬가.. 몬가 잘못됐다..');
+        })
+        .catch(e => {
+          throw e;
+        });
   };
   return (
     <View style={styles.signInInputContainer}>
-      <Text style={{fontWeight: 'bold'}}>Sing In</Text>
+      <Text style={{fontWeight: 'bold'}}>Sign In</Text>
       <TextInput
         ref={idInputRef}
         style={styles.inputBox}
@@ -57,7 +63,7 @@ export default function SignInContainer() {
       />
       <TextInput
         ref={passInputRef}
-        style={{...styles.inputBox, marginTop: '15%'}}
+        style={{...styles.inputBox, marginTop: '15%', marginBottom: '10%'}}
         placeholder="PASSWORD"
         returnKeyType="send"
         onSubmitEditing={onSubmitHandler}
@@ -66,6 +72,9 @@ export default function SignInContainer() {
           idInputRef.current?.clear();
         }}
       />
+      <Pressable onPress={() => dispatch(change(4))}>
+        <Text>sign up</Text>
+      </Pressable>
     </View>
   );
 }
