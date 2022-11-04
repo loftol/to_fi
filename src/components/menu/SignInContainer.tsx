@@ -4,6 +4,7 @@ import axios from 'axios';
 import {useDispatch} from 'react-redux';
 import {change} from '../../common/showStateReducer';
 import localInfo from '../../../localInfo';
+import {setUserData} from '../../common/userInfoReducer';
 
 const styles = StyleSheet.create({
   signInInputContainer: {
@@ -53,7 +54,7 @@ export default function SignInContainer() {
       axios
         .post(`${localInfo.hostIp}/signIn`, request)
         .then(res => {
-          console.log(res);
+          dispatch(setUserData(JSON.parse(res.data).id));
         })
         .catch(e => {
           throw e;

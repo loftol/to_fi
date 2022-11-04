@@ -5,6 +5,7 @@ import toiletDataReducer from './toiletDataReducer';
 import searchValueReducer from './searchReducer';
 import menuReducer from './menuReducer';
 import showStateReducer from './showStateReducer';
+import userInfoReducer from './userInfoReducer';
 
 const rootReducer = combineReducers({
   isReviewOpen: isReviewOpenReducer,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   searchValue: searchValueReducer,
   menu: menuReducer,
   showState: showStateReducer,
+  userId: userInfoReducer,
 });
 
 const store = configureStore({reducer: rootReducer});
