@@ -14,6 +14,7 @@ interface ToiletData {
   id: string;
   name: string;
   address: string;
+  rating: number;
   review: Array<ReviewData>;
 }
 
@@ -41,6 +42,7 @@ const initialState: stateType = {
       id: '0',
       name: 'test-name',
       address: 'test-address',
+      rating: 4.3,
       review: [{id: '1', name: 'test-name', main: 'test-review'}],
     },
   ],
@@ -60,6 +62,7 @@ const dataSlice = createSlice({
       const newToilet = {
         id: action.payload['0'].id,
         name: action.payload['0'].name,
+        rating: action.payload['0'].rating,
         address: action.payload['0'].road_address
           ? action.payload['0'].road_address
           : action.payload['0'].parcel_address,

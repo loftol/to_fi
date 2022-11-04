@@ -50,6 +50,7 @@ export default function toiletInfo(props: propType) {
       <ReviewList
         reviews={props.toiletData.review}
         toiletId={props.toiletData.id}
+        rating={props.toiletData.rating}
       />
     </View>
   );
