@@ -1,18 +1,13 @@
 import React from 'react';
 import {View, StyleSheet, Button} from 'react-native';
 import {useDispatch} from 'react-redux';
-import {library} from '@fortawesome/fontawesome-svg-core';
-import {faCoffee} from '@fortawesome/free-solid-svg-icons';
-import Icon from 'react-native-vector-icons/FontAwesome';
 
-import commonStyles from '../../../common/commonStyles';
 import ReviewInput from './ReviewInput';
 import ReviewItem from './ReviewItem';
 
 import {ReviewData} from '../../../common/toiletDataReducer';
 import {open} from '../../../common/isReviewOpenReducer';
-
-library.add(faCoffee);
+import RatingStar from './RatingStar';
 
 const styles = StyleSheet.create({
   reviewContainer: {
@@ -29,11 +24,15 @@ const styles = StyleSheet.create({
   buttonStyle: {
     color: '#000',
   },
+  starBox: {
+    flexDirection: 'row',
+  },
 });
 
 interface PropTypes {
   reviews: Array<ReviewData>;
   toiletId: string;
+  rating: number;
 }
 
 export default function ToiletReviewList(props: PropTypes) {
@@ -43,7 +42,7 @@ export default function ToiletReviewList(props: PropTypes) {
     dispatch(open());
   };
 
-  const {reviews, toiletId} = props;
+  const {reviews, toiletId, rating} = props;
 
   const showReview = reviews.map(review => (
     <ReviewItem
@@ -57,9 +56,7 @@ export default function ToiletReviewList(props: PropTypes) {
   return (
     <>
       <View style={styles.reviewContainer}>
-        <View style={commonStyles.bottomBorderBox}>
-          <Icon name="star" />
-        </View>
+        <RatingStar rating={rating} />
         {showReview}
         <View style={styles.showMoreReviewButton}>
           <Button
