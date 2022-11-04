@@ -1,5 +1,12 @@
+import {RootState} from '@common/store';
 import React, {useRef} from 'react';
-import {Animated, StyleSheet} from 'react-native';
+import {Dimensions, Animated, StyleSheet, View} from 'react-native';
+import {useSelector} from 'react-redux';
+
+import SignInContainer from '../menu/SignInContainer';
+import SignUpContainer from '../menu/SignUpContainer';
+
+const windowHeight = Dimensions.get('window').height;
 
 interface propType {
   from: number;
@@ -24,6 +31,7 @@ const styles = StyleSheet.create({
 });
 
 const GrowingCircle = ({from, to, pos, color, callBack, style}: propType) => {
+  const showState = useSelector((state: RootState) => state.showState.id);
   const anim = useRef(new Animated.Value(0)).current;
   anim.setValue(from);
 
@@ -32,6 +40,20 @@ const GrowingCircle = ({from, to, pos, color, callBack, style}: propType) => {
     tension: 2,
     useNativeDriver: false,
   }).start(callBack ? callBack() : '');
+
+  function showWhat() {
+    switch (showState) {
+      case 0:
+        break;
+      case 1:
+        return <SignInContainer />;
+      case 4:
+        return <SignUpContainer />;
+      default:
+        break;
+    }
+    return <View />;
+  }
 
   return (
     <Animated.View
@@ -46,8 +68,25 @@ const GrowingCircle = ({from, to, pos, color, callBack, style}: propType) => {
           borderRadius: Animated.divide(anim, 2),
         },
         style,
-      ]}
-    />
+      ]}>
+      <Animated.View
+        style={[
+          {
+            position: 'absolute',
+            zIndex: 9,
+            height: showState !== 0 ? '33%' : 0,
+            width: '19%',
+            backgroundColor: '#fff0',
+            top: Animated.add(
+              windowHeight * 0.1 - pos.y,
+              Animated.divide(anim, 2),
+            ),
+            left: Animated.add(-pos.x, Animated.divide(anim, 2)),
+          },
+        ]}>
+        {showWhat()}
+      </Animated.View>
+    </Animated.View>
   );
 };
 

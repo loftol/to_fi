@@ -2,7 +2,6 @@ import React from 'react';
 import {View, StyleSheet, Button} from 'react-native';
 import {useDispatch} from 'react-redux';
 import {library} from '@fortawesome/fontawesome-svg-core';
-import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faCoffee} from '@fortawesome/free-solid-svg-icons';
 import Icon from 'react-native-vector-icons/FontAwesome';
 

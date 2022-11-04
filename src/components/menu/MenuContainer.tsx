@@ -3,7 +3,6 @@ import {Dimensions, View} from 'react-native';
 import {useSelector} from 'react-redux';
 
 import GrowingCircle from '../UI/GrowingCircle';
-
 import {RootState} from '../../common/store';
 
 const windowHeight = Dimensions.get('window').height;
@@ -29,7 +28,7 @@ const MenuContainer = () => {
   }
 
   return (
-    <View style={{position: 'absolute', zIndex: 2}}>
+    <View style={{position: 'absolute'}}>
       <GrowingCircle
         from={from}
         to={to}

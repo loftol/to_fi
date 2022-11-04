@@ -11,7 +11,6 @@ import {
   ReviewPage,
 } from './src/components/mainComponents';
 import MenuContainer from './src/components/menu/MenuContainer';
-import ContentContainer from './src/components/menu/ContentContainer';
 
 const styles = StyleSheet.create({
   backgroundStyle: {
@@ -25,7 +24,6 @@ const App = ({}) => (
     <View style={styles.backgroundStyle}>
       <MapBoardContainer />
       <ToiletInfoContainer />
-      <ContentContainer />
       <MenuContainer />
       <MenuBar />
       <ReviewPage />
