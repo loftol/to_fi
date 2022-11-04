@@ -1,37 +1,35 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
-import PropTypes from 'prop-types';
+import {View, StyleSheet, Pressable, GestureResponderEvent} from 'react-native';
 
-const styles = StyleSheet.create({
-  squareButtonStyle: {
-    borderRadius: 5,
-  },
-  emptyStyle: {},
-});
-
-function SquareButton({length, onTouch}) {
-  return (
-    <View
-      style={[
-        styles.squareButtonStyle,
-        {
-          height: length,
-          width: length,
-        },
-      ]}
-      onTouchEnd={e => onTouch(e)}
-    />
-  );
+interface propType {
+  pressHandler?: (event: GestureResponderEvent) => void;
+  pressInHandler?: (event: GestureResponderEvent) => void;
+  pressOutHandler?: (event: GestureResponderEvent) => void;
+  color?: string;
+  width?: string | number;
+  height?: string | number;
+  children?: JSX.Element;
 }
 
-SquareButton.propTypes = {
-  length: PropTypes.number,
-  onTouch: PropTypes.func,
-};
-
-SquareButton.defaultProps = {
-  length: 10,
-  onTouch: () => undefined,
-};
+function SquareButton({
+  pressHandler = () => {},
+  pressInHandler = () => {},
+  pressOutHandler = () => {},
+  color = 'black',
+  width = 1,
+  height = 1,
+  children,
+}: propType) {
+  return (
+    <Pressable
+      style={{backgroundColor: color, width, height}}
+      onPress={pressHandler}
+      onPressIn={pressInHandler}
+      onPressOut={pressOutHandler}>
+      {children}
+    </Pressable>
+  );
+}
 
 export default SquareButton;

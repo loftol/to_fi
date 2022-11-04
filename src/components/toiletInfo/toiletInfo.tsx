@@ -47,7 +47,10 @@ export default function toiletInfo(props: propType) {
         <Text style={{fontWeight: 'bold'}}>주소</Text>
         <Text>{props.toiletData.address}</Text>
       </View>
-      <ReviewList reviews={props.toiletData.review} />
+      <ReviewList
+        reviews={props.toiletData.review}
+        toiletId={props.toiletData.id}
+      />
     </View>
   );
 }

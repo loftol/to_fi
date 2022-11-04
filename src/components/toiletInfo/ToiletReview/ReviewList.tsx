@@ -34,6 +34,7 @@ const styles = StyleSheet.create({
 
 interface PropTypes {
   reviews: Array<ReviewData>;
+  toiletId: string;
 }
 
 export default function ToiletReviewList(props: PropTypes) {
@@ -43,7 +44,7 @@ export default function ToiletReviewList(props: PropTypes) {
     dispatch(open());
   };
 
-  const {reviews} = props;
+  const {reviews, toiletId} = props;
 
   const showReview = reviews.map(review => (
     <ReviewItem
@@ -69,7 +70,7 @@ export default function ToiletReviewList(props: PropTypes) {
           />
         </View>
       </View>
-      <ReviewInput />
+      <ReviewInput toiletId={toiletId} />
     </>
   );
 }
