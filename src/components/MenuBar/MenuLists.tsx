@@ -73,9 +73,9 @@ const MenuLists = () => {
   }
 
   const menuProps = [
-    {key: 1, iconName: 'fa-user'},
-    {key: 2, iconName: 'fa-right-to-bracket'},
-    {key: 3, iconName: 'fa-user-gear'},
+    {key: 1, iconName: 'user'},
+    {key: 2, iconName: 'right-to-bracket'},
+    {key: 3, iconName: 'user-gear'},
   ];
 
   return (

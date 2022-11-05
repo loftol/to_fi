@@ -10,11 +10,11 @@ const styles = StyleSheet.create({
   },
 });
 
-const RatingStar = ({rating}) => (
+const RatingInput = () => (
   <View style={styles.starContainer}>
     <Stars color="#919191" size={25} width={25 * 5} />
-    <Stars color="#ff1d1d" size={25} width={25 * rating} />
+    <Stars color="#ff1d1d" size={25} width={25 * 5} />
   </View>
 );
 
-export default RatingStar;
+export default RatingInput;

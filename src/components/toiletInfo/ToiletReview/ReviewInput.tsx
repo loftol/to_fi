@@ -2,6 +2,7 @@ import React, {useState, useRef} from 'react';
 import {View, Text, TextInput, StyleSheet, Button} from 'react-native';
 import axios from 'axios';
 import localInfo from '../../../../localInfo';
+import RatingInput from './RatingInput';
 
 const styles = StyleSheet.create({
   reviewInputContainer: {
@@ -39,6 +40,7 @@ export default function ReviewInput({toiletId}) {
   return (
     <View style={styles.reviewInputContainer}>
       <Text style={{fontWeight: 'bold'}}>리뷰 작성</Text>
+      <RatingInput />
       <TextInput
         ref={inputRef}
         style={styles.inputBox}
