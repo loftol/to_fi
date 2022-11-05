@@ -1,9 +1,10 @@
-import {RootState} from '@common/store';
 import React, {useRef} from 'react';
 import {Dimensions, Animated, StyleSheet, View} from 'react-native';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import ProfileContainer from '../menu/ProfileContainer';
-
+import {change} from '../../common/showStateReducer';
+import {RootState} from '../../common/store';
+import {setUserData} from '../../common/userInfoReducer';
 import SignInContainer from '../menu/SignInContainer';
 import SignUpContainer from '../menu/SignUpContainer';
 
@@ -25,17 +26,17 @@ interface propType {
 
 const styles = StyleSheet.create({
   growingCircle: {
-    backgroundColor: 'black',
     position: 'absolute',
     zIndex: 1,
   },
 });
 
 const GrowingCircle = ({from, to, pos, color, callBack, style}: propType) => {
-  const [showState, userID] = useSelector((state: RootState) => [
-    state.showState.id,
-    state.userId.id,
-  ]);
+  const showState = useSelector((state: RootState) => state.showState.id);
+  const userID = useSelector((state: RootState) => state.userId.id);
+
+  const dispatch = useDispatch();
+
   const anim = useRef(new Animated.Value(0)).current;
   const xrev = useRef(new Animated.Value(0)).current;
   const yrev = useRef(new Animated.Value(0)).current;
@@ -66,8 +67,11 @@ const GrowingCircle = ({from, to, pos, color, callBack, style}: propType) => {
       case 0:
         break;
       case 1:
-        console.log(userID);
         return userID === null ? <SignInContainer /> : <ProfileContainer />;
+      case 2:
+        dispatch(setUserData({id: null}));
+        dispatch(change(1));
+        break;
       case 4:
         return <SignUpContainer />;
       default:
@@ -97,7 +101,6 @@ const GrowingCircle = ({from, to, pos, color, callBack, style}: propType) => {
             zIndex: 9,
             height: showState !== 0 ? '33%' : 0,
             width: '19%',
-            backgroundColor: '#fff0',
             top: Animated.add(windowHeight * 0.1, yrev),
             left: xrev,
           },

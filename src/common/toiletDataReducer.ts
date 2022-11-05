@@ -68,6 +68,7 @@ const dataSlice = createSlice({
           : action.payload['0'].parcel_address,
         review: [],
       };
+      if (state.datas.find(data => newToilet.id === data.id)) return;
       state.datas.unshift(newToilet);
       if (state.datas.length > 5) state.datas.pop();
     });
