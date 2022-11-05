@@ -1,39 +1,19 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
-import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-import {faStar} from '@fortawesome/free-solid-svg-icons';
+
+import Stars from '../../UI/Stars';
 
 const styles = StyleSheet.create({
   starContainer: {
     marginBottom: 20,
-  },
-  frontStar: {
-    position: 'absolute',
-    flexDirection: 'row',
-    overflow: 'hidden',
-  },
-  backgroundStar: {
-    position: 'absolute',
-    flexDirection: 'row',
+    width: 25 * 5,
   },
 });
 
 const RatingStar = ({rating}) => (
   <View style={styles.starContainer}>
-    <View style={styles.backgroundStar}>
-      <FontAwesomeIcon icon={faStar} color="#919191" size={25} />
-      <FontAwesomeIcon icon={faStar} color="#919191" size={25} />
-      <FontAwesomeIcon icon={faStar} color="#919191" size={25} />
-      <FontAwesomeIcon icon={faStar} color="#919191" size={25} />
-      <FontAwesomeIcon icon={faStar} color="#919191" size={25} />
-    </View>
-    <View style={[styles.frontStar, {width: rating * 25}]}>
-      <FontAwesomeIcon icon={faStar} color="#ff1d1d" size={25} />
-      <FontAwesomeIcon icon={faStar} color="#ff1d1d" size={25} />
-      <FontAwesomeIcon icon={faStar} color="#ff1d1d" size={25} />
-      <FontAwesomeIcon icon={faStar} color="#ff1d1d" size={25} />
-      <FontAwesomeIcon icon={faStar} color="#ff1d1d" size={25} />
-    </View>
+    <Stars color="#919191" size={25} width={25 * 5} />
+    <Stars color="#ff1d1d" size={25} width={25 * rating} />
   </View>
 );
 
