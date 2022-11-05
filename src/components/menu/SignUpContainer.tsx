@@ -50,9 +50,6 @@ export default function SignUpContainer() {
   }
 
   const onSubmitHandler = () => {
-    console.log(request.id);
-    console.log(request.password);
-    console.log(passCheck.current.val);
     setErrorState('none');
     if (request.id === '') setErrorState('needId');
     else if (request.password === '') setErrorState('needPassword');
@@ -63,7 +60,7 @@ export default function SignUpContainer() {
       axios
         .post(`${localInfo.hostIp}/signUp`, request)
         .then(() => {
-          console.log('success');
+          dispatch(change(1));
         })
         .catch(e => {
           throw e;

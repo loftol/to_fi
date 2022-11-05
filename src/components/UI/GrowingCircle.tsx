@@ -2,6 +2,7 @@ import {RootState} from '@common/store';
 import React, {useRef} from 'react';
 import {Dimensions, Animated, StyleSheet, View} from 'react-native';
 import {useSelector} from 'react-redux';
+import ProfileContainer from '../menu/ProfileContainer';
 
 import SignInContainer from '../menu/SignInContainer';
 import SignUpContainer from '../menu/SignUpContainer';
@@ -31,12 +32,31 @@ const styles = StyleSheet.create({
 });
 
 const GrowingCircle = ({from, to, pos, color, callBack, style}: propType) => {
-  const showState = useSelector((state: RootState) => state.showState.id);
+  const [showState, userID] = useSelector((state: RootState) => [
+    state.showState.id,
+    state.userId.id,
+  ]);
   const anim = useRef(new Animated.Value(0)).current;
+  const xrev = useRef(new Animated.Value(0)).current;
+  const yrev = useRef(new Animated.Value(0)).current;
   anim.setValue(from);
+  xrev.setValue(0);
+  yrev.setValue(0);
 
   Animated.spring(anim, {
     toValue: to,
+    tension: 2,
+    useNativeDriver: false,
+  }).start(callBack ? callBack() : '');
+
+  Animated.spring(xrev, {
+    toValue: -pos.x + to / 2,
+    tension: 2,
+    useNativeDriver: false,
+  }).start(callBack ? callBack() : '');
+
+  Animated.spring(yrev, {
+    toValue: -pos.y + to / 2,
     tension: 2,
     useNativeDriver: false,
   }).start(callBack ? callBack() : '');
@@ -46,7 +66,8 @@ const GrowingCircle = ({from, to, pos, color, callBack, style}: propType) => {
       case 0:
         break;
       case 1:
-        return <SignInContainer />;
+        console.log(userID);
+        return userID === null ? <SignInContainer /> : <ProfileContainer />;
       case 4:
         return <SignUpContainer />;
       default:
@@ -77,11 +98,8 @@ const GrowingCircle = ({from, to, pos, color, callBack, style}: propType) => {
             height: showState !== 0 ? '33%' : 0,
             width: '19%',
             backgroundColor: '#fff0',
-            top: Animated.add(
-              windowHeight * 0.1 - pos.y,
-              Animated.divide(anim, 2),
-            ),
-            left: Animated.add(-pos.x, Animated.divide(anim, 2)),
+            top: Animated.add(windowHeight * 0.1, yrev),
+            left: xrev,
           },
         ]}>
         {showWhat()}
