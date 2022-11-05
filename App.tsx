@@ -20,21 +20,16 @@ const styles = StyleSheet.create({
   },
 });
 
-const App = ({}) => {
-  useEffect(() => {
-    initIcon();
-  }, []);
-  return (
-    <Provider store={store}>
-      <View style={styles.backgroundStyle}>
-        <MapBoardContainer />
-        <ToiletInfoContainer />
-        <MenuContainer />
-        <MenuBar />
-        <ReviewPage />
-      </View>
-    </Provider>
-  );
-};
+const App = ({}) => (
+  <Provider store={store}>
+    <View style={styles.backgroundStyle}>
+      <MapBoardContainer />
+      <ToiletInfoContainer />
+      <MenuContainer />
+      <MenuBar />
+      <ReviewPage />
+    </View>
+  </Provider>
+);
 
 export default App;
