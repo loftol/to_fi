@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 
-import Icon from 'react-native-vector-icons/Entypo';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {change} from '../../common/showStateReducer';
 import RoundButton from '../UI/RoundButton';
 
@@ -32,7 +32,10 @@ const MenuButton = ({id, iconName, openedMenuId}) => {
       onPressOutHandler={() => {
         setPressed(false);
       }}>
-      <Icon name={iconName} size={30} color={pressed ? '#fff' : '#3f94e9'} />
+      <FontAwesomeIcon
+        icon={['fas', iconName]}
+        color={pressed ? '#fff' : '#3f94e9'}
+      />
     </RoundButton>
   );
 };

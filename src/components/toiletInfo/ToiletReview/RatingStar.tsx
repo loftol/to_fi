@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, PanResponder, StyleSheet} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 
 import {library} from '@fortawesome/fontawesome-svg-core';
 import {faStar as Star} from '@fortawesome/free-solid-svg-icons';

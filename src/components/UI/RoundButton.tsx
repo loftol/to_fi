@@ -34,7 +34,7 @@ export default function RoundButton({
       onPressIn={onPressInHandler}
       onPressOut={onPressOutHandler}
       onPress={onPressHandler}>
-      <Text style={styles.text}>{children}</Text>
+      {children}
     </Pressable>
   );
 }

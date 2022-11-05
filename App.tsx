@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Provider} from 'react-redux';
 
@@ -11,6 +11,7 @@ import {
   ReviewPage,
 } from './src/components/mainComponents';
 import MenuContainer from './src/components/menu/MenuContainer';
+import initIcon from './src/components/UI/fontAwesomeIcon';
 
 const styles = StyleSheet.create({
   backgroundStyle: {
@@ -19,16 +20,21 @@ const styles = StyleSheet.create({
   },
 });
 
-const App = ({}) => (
-  <Provider store={store}>
-    <View style={styles.backgroundStyle}>
-      <MapBoardContainer />
-      <ToiletInfoContainer />
-      <MenuContainer />
-      <MenuBar />
-      <ReviewPage />
-    </View>
-  </Provider>
-);
+const App = ({}) => {
+  useEffect(() => {
+    initIcon();
+  }, []);
+  return (
+    <Provider store={store}>
+      <View style={styles.backgroundStyle}>
+        <MapBoardContainer />
+        <ToiletInfoContainer />
+        <MenuContainer />
+        <MenuBar />
+        <ReviewPage />
+      </View>
+    </Provider>
+  );
+};
 
 export default App;

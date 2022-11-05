@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {View, StyleSheet, TextInput} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import Icon from 'react-native-vector-icons/Entypo';
 import MenuLists from './MenuLists';
 import RoundButton from '../UI/RoundButton';
