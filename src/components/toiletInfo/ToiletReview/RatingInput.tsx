@@ -19,11 +19,8 @@ const RatingInput = ({rating, onRating}) => {
         style={{
           height: '100%',
           width: 12.5,
-          // borderColor: '#000',
-          // borderWidth: 0.5,
         }}
         onPress={() => {
-          console.log(id);
           onRating(id * 0.5);
         }}
       />

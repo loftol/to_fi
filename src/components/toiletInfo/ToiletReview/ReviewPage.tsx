@@ -43,7 +43,6 @@ export default function ReviewPage() {
     }).start();
   };
 
-  console.log(isReviewOpen, 'moved');
   if (isReviewOpen) moveLeft();
   else moveRight();
 

@@ -43,13 +43,12 @@ export default function ToiletReviewList(props: PropTypes) {
   };
 
   const {reviews, toiletId, rating} = props;
-
   const showReview = reviews.map(review => (
     <ReviewItem
       key={review.id}
       id={review.id}
-      name={review.name}
-      main={review.main}
+      user_id={review.user_id}
+      content={review.content}
     />
   ));
 

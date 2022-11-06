@@ -6,8 +6,9 @@ import localInfo from '../../localInfo';
 
 interface ReviewData {
   id: string;
-  name: string;
-  main: string;
+  content: string;
+  // eslint-disable-next-line camelcase
+  user_id: string;
 }
 
 interface ToiletData {
@@ -15,7 +16,7 @@ interface ToiletData {
   name: string;
   address: string;
   rating: number;
-  review: Array<ReviewData>;
+  reviews: Array<ReviewData>;
 }
 
 interface stateType {
@@ -27,25 +28,35 @@ const addData = createAsyncThunk(
   async (toiletId: string, thunkAPI) => {
     const newData = await axios
       .get(`${localInfo.hostIp}/info/${toiletId}`)
-      .then(fileData => JSON.parse(fileData.data))
+      .then(result => JSON.parse(result.data)[0])
       .catch(err => {
         console.log(err);
-        throw err;
       });
-    return {...newData, id: toiletId};
+    const reviews = await axios
+      .get(`${localInfo.hostIp}/review/${toiletId}`)
+      .then(result => JSON.parse(result.data))
+      .catch(err => {
+        console.log(err);
+      });
+    return {...newData, reviews, id: toiletId};
+  },
+);
+
+const updateReview = createAsyncThunk(
+  'toiletData/updateReview',
+  async (toiletId: string, thunkAPI) => {
+    const reviews = await axios
+      .get(`${localInfo.hostIp}/review/${toiletId}`)
+      .then(result => JSON.parse(result.data))
+      .catch(err => {
+        console.log(err);
+      });
+    return {reviews, id: toiletId};
   },
 );
 
 const initialState: stateType = {
-  datas: [
-    {
-      id: '0',
-      name: 'test-name',
-      address: 'test-address',
-      rating: 4.3,
-      review: [{id: '1', name: 'test-name', main: 'test-review'}],
-    },
-  ],
+  datas: [],
 };
 
 const dataSlice = createSlice({
@@ -60,23 +71,27 @@ const dataSlice = createSlice({
   extraReducers: builder => {
     builder.addCase(addData.fulfilled, (state, action) => {
       const newToilet = {
-        id: action.payload['0'].id,
-        name: action.payload['0'].name,
-        rating: action.payload['0'].rating,
-        address: action.payload['0'].road_address
-          ? action.payload['0'].road_address
-          : action.payload['0'].parcel_address,
-        review: [],
+        id: action.payload.id,
+        name: action.payload.name,
+        rating: action.payload.rating,
+        address: action.payload.road_address
+          ? action.payload.road_address
+          : action.payload.parcel_address,
+        reviews: [...action.payload.reviews],
       };
       if (state.datas.find(data => newToilet.id === data.id)) return;
       state.datas.unshift(newToilet);
       if (state.datas.length > 5) state.datas.pop();
+    });
+    builder.addCase(updateReview.fulfilled, (state, action) => {
+      const idx = state.datas.findIndex(data => data.id === action.payload.id);
+      state.datas[idx].reviews = action.payload.reviews;
     });
   },
 });
 
 export {ReviewData, ToiletData};
 export const {deleteData} = dataSlice.actions;
-export {addData};
+export {addData, updateReview};
 
 export default dataSlice.reducer;

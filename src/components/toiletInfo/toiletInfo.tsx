@@ -48,7 +48,7 @@ export default function toiletInfo(props: propType) {
         <Text>{props.toiletData.address}</Text>
       </View>
       <ReviewList
-        reviews={props.toiletData.review}
+        reviews={props.toiletData.reviews}
         toiletId={props.toiletData.id}
         rating={props.toiletData.rating}
       />

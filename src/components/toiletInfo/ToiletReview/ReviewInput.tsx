@@ -1,8 +1,10 @@
 import React, {useState, useRef} from 'react';
 import {View, Text, TextInput, StyleSheet, Button} from 'react-native';
 import axios from 'axios';
+import {useDispatch} from 'react-redux';
 import localInfo from '../../../../localInfo';
 import RatingInput from './RatingInput';
+import {updateReview} from '../../../common/toiletDataReducer';
 
 const styles = StyleSheet.create({
   reviewInputContainer: {
@@ -20,11 +22,12 @@ const styles = StyleSheet.create({
 });
 
 export default function ReviewInput({toiletId}) {
+  const dispatch = useDispatch<any>();
   const inputRef = useRef<TextInput>(null);
   const [main, setMain] = useState('');
   const [rating, setRating] = useState(5);
   const onSubmitHandler = () => {
-    setRating(5);
+    setRating(0);
     axios
       .post(`${localInfo.hostIp}/review/${toiletId}`, {
         content: main,
@@ -35,9 +38,11 @@ export default function ReviewInput({toiletId}) {
         if (result.status === 201) return console.log('success');
         throw new Error('error');
       })
-      .catch(() => console.log('failed'));
-
-    inputRef.current?.clear();
+      .then(() => {
+        inputRef.current?.clear();
+        dispatch(updateReview(toiletId));
+      })
+      .catch(err => console.log(err));
   };
   const onRatingHandler = (id: number) => {
     setRating(id);
