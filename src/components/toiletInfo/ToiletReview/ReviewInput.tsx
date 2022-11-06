@@ -22,12 +22,14 @@ const styles = StyleSheet.create({
 export default function ReviewInput({toiletId}) {
   const inputRef = useRef<TextInput>(null);
   const [main, setMain] = useState('');
+  const [rating, setRating] = useState(5);
   const onSubmitHandler = () => {
+    setRating(5);
     axios
       .post(`${localInfo.hostIp}/review/${toiletId}`, {
         content: main,
         userId: 1,
-        rating: 3,
+        rating,
       })
       .then(result => {
         if (result.status === 201) return console.log('success');
@@ -37,10 +39,14 @@ export default function ReviewInput({toiletId}) {
 
     inputRef.current?.clear();
   };
+  const onRatingHandler = (id: number) => {
+    setRating(id);
+  };
+
   return (
     <View style={styles.reviewInputContainer}>
       <Text style={{fontWeight: 'bold'}}>리뷰 작성</Text>
-      <RatingInput />
+      <RatingInput onRating={onRatingHandler} rating={rating} />
       <TextInput
         ref={inputRef}
         style={styles.inputBox}
