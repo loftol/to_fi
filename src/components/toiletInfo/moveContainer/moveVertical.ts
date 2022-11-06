@@ -69,11 +69,8 @@ class Vertical {
     }).start();
   }
 
-  public cleanUp(infoOpened: boolean, menuOpened: boolean) {
-    if (
-      (!infoOpened && this.openDegree === 2) ||
-      (menuOpened && this.openDegree !== 0)
-    ) {
+  public cleanUp(infoOpened: boolean) {
+    if (!infoOpened && this.openDegree === 2) {
       Keyboard.dismiss();
       this.openDegree = 0;
       Animated.spring(this.pan, {

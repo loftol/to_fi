@@ -32,8 +32,8 @@ const styles = StyleSheet.create({
 });
 
 const GrowingCircle = ({from, to, pos, color, callBack, style}: propType) => {
-  const showState = useSelector((state: RootState) => state.showState.id);
-  const userID = useSelector((state: RootState) => state.userId.id);
+  const showState = useSelector((state: RootState) => state.showState);
+  const userID = useSelector((state: RootState) => state.userId);
 
   const dispatch = useDispatch();
 
@@ -63,11 +63,11 @@ const GrowingCircle = ({from, to, pos, color, callBack, style}: propType) => {
   }).start(callBack ? callBack() : '');
 
   function showWhat() {
-    switch (showState) {
+    switch (showState.id) {
       case 0:
         break;
       case 1:
-        return userID === null ? <SignInContainer /> : <ProfileContainer />;
+        return userID.id === null ? <SignInContainer /> : <ProfileContainer />;
       case 2:
         dispatch(setUserData({id: null}));
         dispatch(change(1));
@@ -99,7 +99,7 @@ const GrowingCircle = ({from, to, pos, color, callBack, style}: propType) => {
           {
             position: 'absolute',
             zIndex: 9,
-            height: showState !== 0 ? '33%' : 0,
+            height: showState.id !== 0 ? '33%' : 0,
             width: '19%',
             top: Animated.add(windowHeight * 0.1, yrev),
             left: xrev,

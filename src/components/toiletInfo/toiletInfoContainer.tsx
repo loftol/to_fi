@@ -41,9 +41,9 @@ const selectDir = (dy: number, dx: number) => {
 export default function ToiletInfoContainer() {
   const dispatch = useDispatch();
 
-  const [infoOpened, menuOpened] = useSelector((state: RootState) => [
-    state.infoOpened.infoOpened,
-  ]);
+  const infoOpened = useSelector(
+    (state: RootState) => state.infoOpened.infoOpened,
+  );
 
   const numberOfData = useSelector(
     (state: RootState) => state.toiletData.datas.length,
@@ -83,7 +83,7 @@ export default function ToiletInfoContainer() {
     }),
   ).current;
 
-  vertical.cleanUp(infoOpened, menuOpened);
+  vertical.cleanUp(infoOpened);
 
   return (
     <Animated.View
