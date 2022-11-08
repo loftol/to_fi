@@ -51,7 +51,13 @@ const updateReview = createAsyncThunk(
       .catch(err => {
         console.log(err);
       });
-    return {reviews, id: toiletId};
+    const newRating = await axios
+      .get(`${localInfo.hostIp}/rating/${toiletId}`)
+      .then(result => JSON.parse(result.data))
+      .catch(err => {
+        console.log(err);
+      });
+    return {reviews, newRating, id: toiletId};
   },
 );
 
@@ -86,6 +92,7 @@ const dataSlice = createSlice({
     builder.addCase(updateReview.fulfilled, (state, action) => {
       const idx = state.datas.findIndex(data => data.id === action.payload.id);
       state.datas[idx].reviews = action.payload.reviews;
+      state.datas[idx].rating = action.payload.newRating;
     });
   },
 });

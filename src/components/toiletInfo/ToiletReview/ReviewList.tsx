@@ -39,7 +39,7 @@ export default function ToiletReviewList(props: PropTypes) {
   const dispatch = useDispatch();
 
   const buttonPressHandler = () => {
-    dispatch(open());
+    dispatch(open(toiletId));
   };
 
   const {reviews, toiletId, rating} = props;

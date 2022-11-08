@@ -1,8 +1,9 @@
 const OPEN = 'isReviewOpen/OPEN' as const;
 const CLOSE = 'isReviewOpen/CLOSE' as const;
 
-export const open = () => ({
+export const open = (toiletId: string) => ({
   type: OPEN,
+  payload: toiletId,
 });
 export const close = () => ({
   type: CLOSE,
@@ -10,11 +11,15 @@ export const close = () => ({
 
 type isReviewOpenState = {
   isReviewOpen: boolean;
+  openedId: string;
 };
 
 type isReviewOpenAction = ReturnType<typeof open> | ReturnType<typeof close>;
 
-const INITIAL_STATE: isReviewOpenState = {isReviewOpen: false};
+const INITIAL_STATE: isReviewOpenState = {
+  isReviewOpen: false,
+  openedId: '00000',
+};
 
 export function isReviewOpenReducer(
   state: isReviewOpenState = INITIAL_STATE,
@@ -22,9 +27,9 @@ export function isReviewOpenReducer(
 ): isReviewOpenState {
   switch (action.type) {
     case OPEN:
-      return {isReviewOpen: true};
+      return {isReviewOpen: true, openedId: action.payload};
     case CLOSE:
-      return {isReviewOpen: false};
+      return {isReviewOpen: false, openedId: '00000'};
     default:
       return state;
   }
